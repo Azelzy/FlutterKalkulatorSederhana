@@ -38,6 +38,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: 
+  - assets/images/archlogo.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -62,13 +70,7 @@ flutter:
     - assets/images/archlogo.png
     
     
-dev_dependencies:
-  flutter_launcher_icons: ^0.13.1
 
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/images/archlogo.png" 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
