@@ -1,16 +1,2 @@
-# laihan01
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# My FiRST Flutter Poroject gUwa
+![](https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-9a8c-61f7-829a-b09d81d00fd2/raw?se=2025-07-22T05%3A46%3A53Z&sp=r&sv=2024-08-04&sr=b&scid=6533581f-ff5e-5469-8296-29f911c55b33&skoid=24a7dec3-38fc-4904-b888-8abe0855c442&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-21T08%3A41%3A29Z&ske=2025-07-22T08%3A41%3A29Z&sks=b&skv=2024-08-04&sig=VwwJK0ppLr5PxLlyX8RHLl69fJAOi6vSTQJHdqf7Jgc%3D)
