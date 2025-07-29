@@ -13,7 +13,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
-  String _selectedGender = 'Lanang';
+  String _selectedGender = 'jaler';
   bool _hasSelectedDate = false;
 
   Widget _buildTextField({
@@ -92,8 +92,8 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             child: Row(
               children: [
-                _buildGenderSegment('lanang'),
-                _buildGenderSegment('wedok'),
+                _buildGenderSegment('jaler'),
+                _buildGenderSegment('estri'),
               ],
             ),
           ),
