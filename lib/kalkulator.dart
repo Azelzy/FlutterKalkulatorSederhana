@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laihan01/login_page.dart'; // pastikan nama class di file ini adalah LoginPage
 
 class KalkulatorPage extends StatefulWidget {
   const KalkulatorPage({super.key});
@@ -86,15 +85,7 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
                         Icons.arrow_back_ios_new,
                         color: Colors.white,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginPage(), // <- perbaikan di sini
-                          ),
-                        );
-                      },
+                      onPressed: () => Navigator.pop(context),
                     ),
                     const Expanded(
                       child: Text(
@@ -154,7 +145,7 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withAlpha((0.1 * 255).toInt()),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
