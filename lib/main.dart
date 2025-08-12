@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laihan01/login_page.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:laihan01/routes/pages.dart';
+import 'package:laihan01/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,14 +9,16 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginPage(),
+      initialRoute: AppRoutes.calculator,
+      getPages: AppPages.pages,
     );
   }
 }
