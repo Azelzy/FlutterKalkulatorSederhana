@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: AppRoutes.calculator,
+      initialRoute: AppRoutes.bottomNav, // arahkan ke bottom nav
       getPages: AppPages.pages,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
