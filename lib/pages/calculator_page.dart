@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laihan01/controllers/calculator_controller.dart';
-import 'package:laihan01/routes/routes.dart';
 import 'package:laihan01/widget/button_widget.dart';
 import 'package:laihan01/widget/input_widget.dart';
 
@@ -66,13 +65,6 @@ class CalculatorPage extends StatelessWidget {
             ),
             // render UI berada di wrap OBX
             Obx(() => Text("Hasil ${calculatorController.hasil.value}")),
-            CustomButton(
-              text: "Move to Football Players",
-              textColor: Colors.green,
-              onPressed: () {
-                Get.toNamed(AppRoutes.footballplayers);
-              },
-            ),
           ],
         ),
       ),
