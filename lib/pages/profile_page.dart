@@ -9,7 +9,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(
-          "PROFILES",
+          "PROFILS",
           style: TextStyle(
             fontWeight: FontWeight.w900,
             letterSpacing: 1.5,
@@ -31,9 +31,8 @@ class ProfilePage extends StatelessWidget {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
                 border: Border.all(color: Colors.black, width: 3),
-                shape: BoxShape.circle, // biar bulat
+                shape: BoxShape.rectangle,
                 image: DecorationImage(
                   image: AssetImage("assets/images/miyano.jpg"),
                   fit: BoxFit.cover,
@@ -44,9 +43,15 @@ class ProfilePage extends StatelessWidget {
             // Profile Info Cards
             const SizedBox(height: 32),
             _buildProfileCard(
-              label: "NAMA",
+              label: "NAMA ASLI",
+              value: "Azka El Fachrizy",
+              icon: Icons.tag_outlined,
+            ),
+            const SizedBox(height: 32),
+            _buildProfileCard(
+              label: "日本語のユーザー名",
               value: "Azuka Takayama",
-              icon: Icons.tag,
+              icon: Icons.javascript_outlined,
             ),
             const SizedBox(height: 16),
 
@@ -60,13 +65,13 @@ class ProfilePage extends StatelessWidget {
             _buildProfileCard(
               label: "Github URL",
               value: "Github.com/azelzy",
-              icon: Icons.code,
+              icon: Icons.code_outlined,
             ),
             const SizedBox(height: 16),
             _buildProfileCard(
               label: "Instagram URL",
               value: "Instagram.com/azelzy",
-              icon: Icons.camera_alt,
+              icon: Icons.camera_alt_outlined,
             ),
 
             const SizedBox(height: 16),
