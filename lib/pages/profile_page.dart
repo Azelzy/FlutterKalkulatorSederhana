@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 32),
-            
+
             // Profile Avatar
             Container(
               width: 120,
@@ -33,93 +33,42 @@ class ProfilePage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.grey[600],
+                shape: BoxShape.circle, // biar bulat
+                image: DecorationImage(
+                  image: AssetImage("assets/images/miyano.jpg"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            const SizedBox(height: 32),
 
             // Profile Info Cards
+            const SizedBox(height: 32),
             _buildProfileCard(
-              label: "NAME",
-              value: "JOHN DOE",
-              icon: Icons.person,
+              label: "NAMA",
+              value: "Azuka Takayama",
+              icon: Icons.tag,
             ),
             const SizedBox(height: 16),
-            
+
             _buildProfileCard(
               label: "EMAIL",
-              value: "JOHN.DOE@EMAIL.COM",
+              value: "azkaelfachrizy@gmai.com",
               icon: Icons.email,
             ),
             const SizedBox(height: 16),
-            
+
             _buildProfileCard(
-              label: "PHONE",
-              value: "+62 812 3456 7890",
-              icon: Icons.phone,
+              label: "Github URL",
+              value: "Github.com/azelzy",
+              icon: Icons.code,
             ),
             const SizedBox(height: 16),
-            
             _buildProfileCard(
-              label: "LOCATION",
-              value: "JAKARTA, INDONESIA",
-              icon: Icons.location_on,
+              label: "Instagram URL",
+              value: "Instagram.com/azelzy",
+              icon: Icons.camera_alt,
             ),
-            
-            const Spacer(),
-            
-            // Action buttons
-            Container(
-              width: double.infinity,
-              height: 48,
-              margin: const EdgeInsets.only(bottom: 12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black, width: 2),
-              ),
-              child: TextButton.icon(
-                icon: const Icon(Icons.edit, color: Colors.black),
-                label: const Text(
-                  "EDIT PROFILE",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.0,
-                  ),
-                ),
-                onPressed: () {
-                  // TODO: Implement edit profile
-                },
-              ),
-            ),
-            
-            Container(
-              width: double.infinity,
-              height: 48,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(color: Colors.black, width: 2),
-              ),
-              child: TextButton.icon(
-                icon: const Icon(Icons.logout, color: Colors.white),
-                label: const Text(
-                  "LOGOUT",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.0,
-                  ),
-                ),
-                onPressed: () {
-                  // TODO: Implement logout
-                },
-              ),
-            ),
-            
+
             const SizedBox(height: 16),
           ],
         ),
@@ -148,11 +97,7 @@ class ProfilePage extends StatelessWidget {
               color: Colors.grey[200],
               border: Border.all(color: Colors.black, width: 1),
             ),
-            child: Icon(
-              icon,
-              color: Colors.black,
-              size: 20,
-            ),
+            child: Icon(icon, color: Colors.black, size: 20),
           ),
           const SizedBox(width: 16),
           Expanded(
