@@ -77,10 +77,10 @@ class CalculatorController extends GetxController {
 
   bool _isValidInput() {
     if (txtAngka1.text.isEmpty || txtAngka2.text.isEmpty) {
-      hasil.value = " YAHAHAH ERROR";
+      hasil.value = "ERROR";
       Get.snackbar(
         "ERROR",
-        "PLLIS FILL IN BOTH FIELDS",
+        "INPUT NUMBERS FIRST",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
@@ -90,10 +90,10 @@ class CalculatorController extends GetxController {
 
     if (double.tryParse(txtAngka1.text) == null || 
         double.tryParse(txtAngka2.text) == null) {
-      hasil.value = "XAXAXA ERROR";
+      hasil.value = "ERROR";
       Get.snackbar(
         "ERROR",
-        "ANGKA ANEH",
+        "INVALID NUMBERS",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
