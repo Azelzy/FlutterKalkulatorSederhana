@@ -6,6 +6,8 @@ import 'football_page.dart';
 import 'profile_page.dart';
 
 class BottomNavPage extends StatelessWidget {
+  BottomNavPage({super.key});
+  // Initialize the BottomNavController
   final BottomNavController controller = Get.put(BottomNavController());
 
   final List<Widget> pages = [
