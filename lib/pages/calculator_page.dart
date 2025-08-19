@@ -31,62 +31,61 @@ class CalculatorPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 24),
-            
+
             // Input fields
             _buildInputField(
               controller: calculatorController.txtAngka1,
-              label: "NUMBER 1",
+              label: "ANGKA PERTAMAX",
             ),
             const SizedBox(height: 16),
-            
+
             _buildInputField(
               controller: calculatorController.txtAngka2,
-              label: "NUMBER 2",
+              label: "ANGKA KEDUAX",
             ),
             const SizedBox(height: 32),
 
             // Operator buttons
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildOperatorButton(
-                          text: "+",
-                          onPressed: calculatorController.tambah,
-                        ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildOperatorButton(
+                        text: "+",
+                        onPressed: calculatorController.tambah,
                       ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _buildOperatorButton(
-                          text: "−",
-                          onPressed: calculatorController.kurang,
-                        ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _buildOperatorButton(
+                        text: "−",
+                        onPressed: calculatorController.kurang,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildOperatorButton(
-                          text: "×",
-                          onPressed: calculatorController.kali,
-                        ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildOperatorButton(
+                        text: "×",
+                        onPressed: calculatorController.kali,
                       ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _buildOperatorButton(
-                          text: "÷",
-                          onPressed: calculatorController.bagi,
-                        ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _buildOperatorButton(
+                        text: "÷",
+                        onPressed: calculatorController.bagi,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
+            // Result display
             const SizedBox(height: 32),
 
             // Result display
@@ -109,15 +108,17 @@ class CalculatorPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Obx(() => Text(
-                    calculatorController.hasil.value,
-                    style: const TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                      letterSpacing: 1.0,
+                  Obx(
+                    () => Text(
+                      calculatorController.hasil.value,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                        letterSpacing: 1.0,
+                      ),
                     ),
-                  )),
+                  ),
                 ],
               ),
             ),
@@ -171,10 +172,7 @@ class CalculatorPage extends StatelessWidget {
           ),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(16),
-          prefixIcon: const Icon(
-            Icons.tag,
-            color: Colors.black,
-          ),
+          prefixIcon: const Icon(Icons.tag, color: Colors.black),
         ),
         style: const TextStyle(
           fontWeight: FontWeight.w600,

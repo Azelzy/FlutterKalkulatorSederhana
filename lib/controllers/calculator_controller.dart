@@ -54,9 +54,9 @@ class CalculatorController extends GetxController {
         operator.value = "÷";
         Get.snackbar(
           "ERROR",
-          "CANNOT DIVIDE BY ZERO",
+          "Pembagian dengan nol tidak diperbolehkan",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(63, 112, 111, 111),
           colorText: Colors.white,
         );
         return;
@@ -80,9 +80,9 @@ class CalculatorController extends GetxController {
       hasil.value = "ERROR";
       Get.snackbar(
         "ERROR",
-        "INPUT NUMBERS FIRST",
+        "Isian tidak boleh kosong",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(63, 112, 111, 111),
         colorText: Colors.white,
       );
       return false;
@@ -93,9 +93,9 @@ class CalculatorController extends GetxController {
       hasil.value = "ERROR";
       Get.snackbar(
         "ERROR",
-        "INVALID NUMBERS",
+        "Isian harus berupa angka",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(63, 112, 111, 111),
         colorText: Colors.white,
       );
       return false;

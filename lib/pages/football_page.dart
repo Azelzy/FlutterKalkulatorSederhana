@@ -109,7 +109,7 @@ class Footballpage extends StatelessWidget {
                           "TERHAPUS",
                           player.name.toUpperCase(),
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.black,
+                          backgroundColor: const Color.fromARGB(63, 112, 111, 111),
                           colorText: Colors.white,
                         );
                       },
@@ -193,7 +193,7 @@ class Footballpage extends StatelessWidget {
                               "TERPENCET",
                               player.name.toUpperCase(),
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Colors.black,
+                              backgroundColor: const Color.fromARGB(63, 112, 111, 111),
                               colorText: Colors.white,
                             );
                           },
