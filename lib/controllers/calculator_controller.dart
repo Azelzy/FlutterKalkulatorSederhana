@@ -14,3 +14,7 @@ class CalculatorController extends GetxController {
     hasil.value = result.toString();
   }
 }
+
+
+
+

@@ -3,12 +3,10 @@ import 'package:get/get.dart';
 import '../models/football_model.dart';
 
 class FootballEditController extends GetxController {
-  final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final positionController = TextEditingController();
   final numberController = TextEditingController();
   final imageController = TextEditingController();
-  final isImageValid = true.obs;
 
   @override
   void onClose() {
@@ -22,58 +20,23 @@ class FootballEditController extends GetxController {
   void initializeFields(Player player) {
     nameController.text = player.name;
     positionController.text = player.position;
-    numberController.text = player.number.toString();
+    numberController.text = player.number == 0 ? '' : player.number.toString();
     imageController.text = player.imageUrl;
-    validateImageUrl(player.imageUrl);
   }
 
-  Future<void> validateImageUrl(String url) async {
-    if (url.isEmpty) {
-      isImageValid.value = false;
-      return;
-    }
-
-    try {
-      await NetworkImage(url).resolve(ImageConfiguration.empty);
-      isImageValid.value = true;
-    } catch (e) {
-      isImageValid.value = false;
-    }
-  }
-
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a name';
-    }
-    return null;
-  }
-
-  String? validatePosition(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a position';
-    }
-    return null;
-  }
-
-  String? validateNumber(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a number';
-    }
-    final number = int.tryParse(value);
-    if (number == null || number < 1 || number > 99) {
-      return 'Please enter a valid number (1-99)';
-    }
-    return null;
-  }
-
-  Player? getValidatedPlayer() {
-    if (!formKey.currentState!.validate()) return null;
-
+  Player getPlayer() {
     return Player(
-      name: nameController.text,
-      position: positionController.text,
-      number: int.parse(numberController.text),
-      imageUrl: imageController.text,
+      name: nameController.text.trim(),
+      position: positionController.text.trim(),
+      number: int.tryParse(numberController.text.trim()) ?? 0,
+      imageUrl: imageController.text.trim(),
     );
+  }
+
+  void clearFields() {
+    nameController.clear();
+    positionController.clear();
+    numberController.clear();
+    imageController.clear();
   }
 }

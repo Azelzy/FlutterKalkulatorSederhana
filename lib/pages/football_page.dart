@@ -23,35 +23,67 @@ class Footballpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text("Football Players"),
-        backgroundColor: Colors.lightBlue,
-        elevation: 2,
+        title: const Text(
+          "PEMAINS",
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.5,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addNewPlayer,
-        backgroundColor: Colors.lightBlue,
-        child: const Icon(Icons.add),
+      floatingActionButton: Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          shape: BoxShape.rectangle,
+        ),
+        child: IconButton(
+          onPressed: _addNewPlayer,
+          icon: const Icon(Icons.add, color: Colors.white, size: 24),
+        ),
       ),
       body: Container(
-        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(16),
         child: Obx(
           () => footballController.players.isEmpty
               ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.sports_soccer,
-                        size: 64,
-                        color: Colors.grey[400],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "No players added yet",
-                        style: TextStyle(fontSize: 18, color: Colors.grey[600]),
-                      ),
-                    ],
+                  child: Container(
+                    padding: const EdgeInsets.all(32),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: Icon(
+                            Icons.sports_soccer,
+                            size: 40,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          "LIST PEMAIN KOSONG",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.grey[600],
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               : ListView.builder(
@@ -61,73 +93,108 @@ class Footballpage extends StatelessWidget {
                     return Dismissible(
                       key: Key(player.name + index.toString()),
                       background: Container(
-                        color: Colors.red,
+                        color: Colors.black,
                         alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 20),
-                        child: const Icon(Icons.delete, color: Colors.white),
+                        padding: const EdgeInsets.only(right: 16),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
                       direction: DismissDirection.endToStart,
                       onDismissed: (direction) {
                         footballController.deletePlayer(index);
                         Get.snackbar(
-                          "Player Deleted",
-                          "Successfully removed ${player.name}",
+                          "TERHAPUS",
+                          player.name.toUpperCase(),
                           snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.black,
+                          colorText: Colors.white,
                         );
                       },
-                      child: Card(
-                        elevation: 3,
-                        margin: const EdgeInsets.symmetric(vertical: 8),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black, width: 2),
+                        ),
                         child: ListTile(
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          leading: Hero(
-                            tag: 'player-${player.name}-$index',
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(player.imageUrl),
-                              radius: 28,
+                          contentPadding: const EdgeInsets.all(16),
+                          leading: Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              border: Border.all(color: Colors.black, width: 2),
                             ),
+                            child: player.imageUrl.isNotEmpty
+                                ? Image.network(
+                                    player.imageUrl,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Icon(
+                                        Icons.person,
+                                        color: Colors.grey[600],
+                                      );
+                                    },
+                                  )
+                                : Icon(Icons.person, color: Colors.grey[600]),
                           ),
                           title: Text(
-                            player.name,
+                            player.name.toUpperCase(),
                             style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              letterSpacing: 0.5,
+                              color: Colors.black,
                             ),
                           ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 4),
-                              Text(
-                                "${player.position} • #${player.number}",
-                                style: TextStyle(color: Colors.grey[600]),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                              "${player.position.toUpperCase()} • ${player.number}",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                letterSpacing: 0.5,
                               ),
-                            ],
-                          ),
-                          trailing: IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: Colors.lightBlue,
                             ),
-                            onPressed: () {
-                              Get.toNamed(
-                                AppRoutes.footballedit,
-                                arguments: {
-                                  'index': index,
-                                  'player': player,
-                                  'isNewPlayer': false,
-                                },
-                              );
-                            },
+                          ),
+                          trailing: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              border: Border.all(color: Colors.black, width: 1),
+                            ),
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                                size: 18,
+                              ),
+                              onPressed: () {
+                                Get.toNamed(
+                                  AppRoutes.footballedit,
+                                  arguments: {
+                                    'index': index,
+                                    'player': player,
+                                    'isNewPlayer': false,
+                                  },
+                                );
+                              },
+                            ),
                           ),
                           onTap: () {
                             Get.snackbar(
-                              "Player Selected",
-                              player.name,
+                              "TERPENCET",
+                              player.name.toUpperCase(),
                               snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.black,
+                              colorText: Colors.white,
                             );
                           },
                         ),
