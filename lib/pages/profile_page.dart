@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
               value: "Azka El Fachrizy",
               icon: Icons.tag_outlined,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             _buildProfileCard(
               label: "日本語のユーザー名",
               value: "Azuka Takayama",
