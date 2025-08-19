@@ -36,18 +36,22 @@ class _FootballEditPageState extends State<FootballEditPage> {
     final controller = Get.find<FootballController>();
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: Text(
-          isNewPlayer ? "TAMBAH PEMAINS" : "EDIT PEMAINS",
-          style: const TextStyle(
+       appBar: AppBar(
+        title: const Text(
+          "EDITS PEMAINS",
+          style: TextStyle(
             fontWeight: FontWeight.w900,
-            letterSpacing: 1.5,
+            letterSpacing: 3,
             color: Colors.black,
           ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: Colors.black,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2), // tinggi garis
+          child: Container(color: Colors.black, height: 2),
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.all(16),

@@ -12,13 +12,17 @@ class ProfilePage extends StatelessWidget {
           "PROFILS",
           style: TextStyle(
             fontWeight: FontWeight.w900,
-            letterSpacing: 1.5,
+            letterSpacing: 3,
             color: Colors.black,
           ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: Colors.black,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2), // tinggi garis
+          child: Container(color: Colors.black, height: 2),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
