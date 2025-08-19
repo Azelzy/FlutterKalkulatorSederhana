@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 32),
-            
+
             // Profile Avatar
             Container(
               width: 120,
@@ -34,44 +34,46 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[300],
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.grey[600],
-              ),
+              child: Icon(Icons.person, size: 60, color: Colors.grey[600]),
             ),
-            const SizedBox(height: 32),
 
             // Profile Info Cards
+            const SizedBox(height: 32),
             _buildProfileCard(
-              label: "NAME",
-              value: "JOHN DOE",
+              label: "NAMA",
+              value: "AZUKA",
               icon: Icons.person,
             ),
+            const SizedBox(height: 32),
+            _buildProfileCard(
+              label: "ABSEN",
+              value: "6",
+              icon: Icons.numbers_outlined,
+            ),
             const SizedBox(height: 16),
-            
+
             _buildProfileCard(
               label: "EMAIL",
-              value: "JOHN.DOE@EMAIL.COM",
+              value: "azkaelfachrizy@gmail.com",
               icon: Icons.email,
             ),
             const SizedBox(height: 16),
-            
+
             _buildProfileCard(
               label: "PHONE",
-              value: "+62 812 3456 7890",
+              value: "+62 857-415-058-08",
               icon: Icons.phone,
             ),
             const SizedBox(height: 16),
-            
+
             _buildProfileCard(
               label: "LOCATION",
               value: "JAKARTA, INDONESIA",
               icon: Icons.location_on,
             ),
-            
+
             const Spacer(),
-            
+
             // Action buttons
             Container(
               width: double.infinity,
@@ -96,7 +98,7 @@ class ProfilePage extends StatelessWidget {
                 },
               ),
             ),
-            
+
             Container(
               width: double.infinity,
               height: 48,
@@ -105,9 +107,9 @@ class ProfilePage extends StatelessWidget {
                 border: Border.all(color: Colors.black, width: 2),
               ),
               child: TextButton.icon(
-                icon: const Icon(Icons.logout, color: Colors.white),
+                icon: const Icon(Icons.save, color: Colors.white),
                 label: const Text(
-                  "LOGOUT",
+                  "SIMPAN",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
@@ -115,11 +117,11 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // TODO: Implement logout
+                  // TODO: Implement SAVE
                 },
               ),
             ),
-            
+
             const SizedBox(height: 16),
           ],
         ),
@@ -148,11 +150,7 @@ class ProfilePage extends StatelessWidget {
               color: Colors.grey[200],
               border: Border.all(color: Colors.black, width: 1),
             ),
-            child: Icon(
-              icon,
-              color: Colors.black,
-              size: 20,
-            ),
+            child: Icon(icon, color: Colors.black, size: 20),
           ),
           const SizedBox(width: 16),
           Expanded(

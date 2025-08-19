@@ -12,5 +12,6 @@ class AppPages {
     GetPage(name: AppRoutes.footballplayers, page: () => Footballpage()),
     GetPage(name: AppRoutes.footballedit,page: () => const FootballEditPage(),),
     GetPage(name: AppRoutes.bottomNav, page: () => BottomNavPage()),
+    // Add other pages here as needed
   ];
 }
