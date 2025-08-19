@@ -2,12 +2,186 @@ import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "User Profile Page",
-        style: TextStyle(fontSize: 20),
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text(
+          "PROFILE",
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.5,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const SizedBox(height: 32),
+            
+            // Profile Avatar
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                border: Border.all(color: Colors.black, width: 3),
+              ),
+              child: Icon(
+                Icons.person,
+                size: 60,
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // Profile Info Cards
+            _buildProfileCard(
+              label: "NAME",
+              value: "JOHN DOE",
+              icon: Icons.person,
+            ),
+            const SizedBox(height: 16),
+            
+            _buildProfileCard(
+              label: "EMAIL",
+              value: "JOHN.DOE@EMAIL.COM",
+              icon: Icons.email,
+            ),
+            const SizedBox(height: 16),
+            
+            _buildProfileCard(
+              label: "PHONE",
+              value: "+62 812 3456 7890",
+              icon: Icons.phone,
+            ),
+            const SizedBox(height: 16),
+            
+            _buildProfileCard(
+              label: "LOCATION",
+              value: "JAKARTA, INDONESIA",
+              icon: Icons.location_on,
+            ),
+            
+            const Spacer(),
+            
+            // Action buttons
+            Container(
+              width: double.infinity,
+              height: 48,
+              margin: const EdgeInsets.only(bottom: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black, width: 2),
+              ),
+              child: TextButton.icon(
+                icon: const Icon(Icons.edit, color: Colors.black),
+                label: const Text(
+                  "EDIT PROFILE",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+                onPressed: () {
+                  // TODO: Implement edit profile
+                },
+              ),
+            ),
+            
+            Container(
+              width: double.infinity,
+              height: 48,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                border: Border.all(color: Colors.black, width: 2),
+              ),
+              child: TextButton.icon(
+                icon: const Icon(Icons.logout, color: Colors.white),
+                label: const Text(
+                  "LOGOUT",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+                onPressed: () {
+                  // TODO: Implement logout
+                },
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileCard({
+    required String label,
+    required String value,
+    required IconData icon,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black, width: 2),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              border: Border.all(color: Colors.black, width: 1),
+            ),
+            child: Icon(
+              icon,
+              color: Colors.black,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.grey[600],
+                    letterSpacing: 1.0,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.black,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
