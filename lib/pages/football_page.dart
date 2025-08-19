@@ -106,11 +106,11 @@ class Footballpage extends StatelessWidget {
                       onDismissed: (direction) {
                         footballController.deletePlayer(index);
                         Get.snackbar(
-                          "TERHAPUS",
+                          "TELAH DIHAPUS",
                           player.name.toUpperCase(),
                           snackPosition: SnackPosition.BOTTOM,
                           backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-                          colorText: Colors.white,
+                          colorText: Colors.black,
                         );
                       },
                       child: Container(
@@ -190,11 +190,11 @@ class Footballpage extends StatelessWidget {
                           ),
                           onTap: () {
                             Get.snackbar(
-                              "TERPENCET",
+                              "ANDA MENEKAN",
                               player.name.toUpperCase(),
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-                              colorText: Colors.white,
+                              colorText: Colors.black,
                             );
                           },
                         ),

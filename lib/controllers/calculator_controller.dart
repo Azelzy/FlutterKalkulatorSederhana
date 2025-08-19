@@ -57,7 +57,7 @@ class CalculatorController extends GetxController {
           "Pembagian dengan nol tidak diperbolehkan",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-          colorText: Colors.white,
+          colorText: Colors.black,
         );
         return;
       }
@@ -83,7 +83,7 @@ class CalculatorController extends GetxController {
         "Isian tidak boleh kosong",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-        colorText: Colors.white,
+        colorText: Colors.black,
       );
       return false;
     }
@@ -96,7 +96,7 @@ class CalculatorController extends GetxController {
         "Isian harus berupa angka",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-        colorText: Colors.white,
+        colorText: Colors.black,
       );
       return false;
     }

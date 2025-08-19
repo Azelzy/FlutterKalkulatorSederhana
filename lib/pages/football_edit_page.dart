@@ -118,11 +118,11 @@ class _FootballEditPageState extends State<FootballEditPage> {
 
                   Get.back();
                   Get.snackbar(
-                    isNewPlayer ? "TERTAMBAHKAN" : "TERPERBARUI",
+                    isNewPlayer ? "TERPERBARUI" : "TERPERBARUI",
                     newPlayer.name.toUpperCase(),
                     snackPosition: SnackPosition.BOTTOM,
-                    backgroundColor: Colors.black,
-                    colorText: Colors.white,
+                    backgroundColor: const Color.fromARGB(63, 112, 111, 111),
+                    colorText: Colors.black,
                   );
                 },
               ),
