@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[300],
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              child: Icon(Icons.person, size: 60, color: Colors.grey[600]),
+              child: Image.asset("assets/images/miyano.jpg", fit: BoxFit.cover),
             ),
 
             // Profile Info Cards
@@ -60,16 +60,21 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 16),
 
             _buildProfileCard(
-              label: "PHONE",
+              label: "NOMOR TELEPON",
               value: "+62 857-415-058-08",
               icon: Icons.phone,
             ),
             const SizedBox(height: 16),
 
             _buildProfileCard(
-              label: "LOCATION",
-              value: "JAKARTA, INDONESIA",
-              icon: Icons.location_on,
+              label: "ALAMAT SEKOLAH",
+              value: "SMK RADEN UMAR SAID KUDUS",
+              icon: Icons.school_sharp,
+            ),
+            _buildProfileCard(
+              label: "KELAS",
+              value: "XI PPLG 1",
+              icon: Icons.class_sharp,
             ),
 
             const Spacer(),
