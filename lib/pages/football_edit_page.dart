@@ -5,16 +5,7 @@ import '../controllers/football_edit_controller.dart';
 import '../models/football_model.dart';
 
 class FootballEditPage extends StatefulWidget {
-  final int index;
-  final Player player;
-  final bool isNewPlayer;
-
-  const FootballEditPage({
-    super.key,
-    required this.index,
-    required this.player,
-    this.isNewPlayer = false,
-  });
+  const FootballEditPage({super.key});
 
   @override
   State<FootballEditPage> createState() => _FootballEditPageState();
@@ -22,11 +13,22 @@ class FootballEditPage extends StatefulWidget {
 
 class _FootballEditPageState extends State<FootballEditPage> {
   final editController = Get.put(FootballEditController());
+  
+  // Ambil arguments di sini
+  late final Map<String, dynamic> arguments;
+  late final int index;
+  late final Player player;
+  late final bool isNewPlayer;
 
   @override
   void initState() {
     super.initState();
-    editController.initializeFields(widget.player);
+    arguments = Get.arguments as Map<String, dynamic>;
+    index = arguments['index'];
+    player = arguments['player'];
+    isNewPlayer = arguments['isNewPlayer'] ?? false;
+    
+    editController.initializeFields(player);
   }
 
   @override
@@ -36,7 +38,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(
-          widget.isNewPlayer ? "TAMBAH PEMAINS" : "EDIT PEMAINS",
+          isNewPlayer ? "TAMBAH PEMAINS" : "EDIT PEMAINS",
           style: const TextStyle(
             fontWeight: FontWeight.w900,
             letterSpacing: 1.5,
@@ -98,7 +100,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
                   color: Colors.white,
                 ),
                 label: Text(
-                  widget.isNewPlayer ? "TAMBAHKANS PEMAINS" : "SIMPANS PERUBAHANS",
+                  isNewPlayer ? "TAMBAHKANS PEMAINS" : "SIMPANS PERUBAHANS",
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
@@ -106,18 +108,18 @@ class _FootballEditPageState extends State<FootballEditPage> {
                   ),
                 ),
                 onPressed: () {
-                  final player = editController.getPlayer();
+                  final newPlayer = editController.getPlayer();
 
-                  if (widget.isNewPlayer) {
-                    controller.addPlayer(player);
+                  if (isNewPlayer) {
+                    controller.addPlayer(newPlayer);
                   } else {
-                    controller.updatePlayer(widget.index, player);
+                    controller.updatePlayer(index, newPlayer);
                   }
 
                   Get.back();
                   Get.snackbar(
-                    widget.isNewPlayer ? "TERTAMBAHKAN" : "TERPERBARUI",
-                    player.name.toUpperCase(),
+                    isNewPlayer ? "TERTAMBAHKAN" : "TERPERBARUI",
+                    newPlayer.name.toUpperCase(),
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: Colors.black,
                     colorText: Colors.white,
