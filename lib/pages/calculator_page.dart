@@ -12,6 +12,7 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // biar konten naik saat keyboard muncul
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(
@@ -26,126 +27,120 @@ class CalculatorPage extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
       ),
-      body: Container(
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 24),
+        children: [
+          const SizedBox(height: 24),
 
-            // Input fields
-            _buildInputField(
-              controller: calculatorController.txtAngka1,
-              label: "ANGKA PERTAMAX",
-            ),
-            const SizedBox(height: 16),
+          // Input fields
+          _buildInputField(
+            controller: calculatorController.txtAngka1,
+            label: "ANGKA PERTAMAX",
+          ),
+          const SizedBox(height: 16),
 
-            _buildInputField(
-              controller: calculatorController.txtAngka2,
-              label: "ANGKA KEDUAX",
-            ),
-            const SizedBox(height: 32),
+          _buildInputField(
+            controller: calculatorController.txtAngka2,
+            label: "ANGKA KEDUAX",
+          ),
+          const SizedBox(height: 32),
 
-            // Operator buttons
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildOperatorButton(
-                        text: "+",
-                        onPressed: calculatorController.tambah,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildOperatorButton(
-                        text: "−",
-                        onPressed: calculatorController.kurang,
-                      ),
-                    ),
-                  ],
+          // Operator buttons
+          Row(
+            children: [
+              Expanded(
+                child: _buildOperatorButton(
+                  text: "+",
+                  onPressed: calculatorController.tambah,
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildOperatorButton(
-                        text: "×",
-                        onPressed: calculatorController.kali,
-                      ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _buildOperatorButton(
+                  text: "−",
+                  onPressed: calculatorController.kurang,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: _buildOperatorButton(
+                  text: "×",
+                  onPressed: calculatorController.kali,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _buildOperatorButton(
+                  text: "÷",
+                  onPressed: calculatorController.bagi,
+                ),
+              ),
+            ],
+          ),
+
+          // Result display
+          const SizedBox(height: 32),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              border: Border.all(color: Colors.black, width: 2),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "RESULT",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.grey[400],
+                    letterSpacing: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Obx(
+                  () => Text(
+                    calculatorController.hasil.value,
+                    style: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 1.0,
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildOperatorButton(
-                        text: "÷",
-                        onPressed: calculatorController.bagi,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
-            // Result display
-            const SizedBox(height: 32),
+          ),
 
-            // Result display
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(color: Colors.black, width: 2),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    "RESULT",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey[400],
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Obx(
-                    () => Text(
-                      calculatorController.hasil.value,
-                      style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        letterSpacing: 1.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          const SizedBox(height: 16),
+
+          // Clear button
+          Container(
+            width: double.infinity,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              border: Border.all(color: Colors.black, width: 2),
             ),
-            const SizedBox(height: 16),
-
-            // Clear button
-            Container(
-              width: double.infinity,
-              height: 48,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                border: Border.all(color: Colors.black, width: 2),
-              ),
-              child: TextButton(
-                onPressed: calculatorController.clear,
-                child: const Text(
-                  "CLEAR",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.0,
-                  ),
+            child: TextButton(
+              onPressed: calculatorController.clear,
+              child: const Text(
+                "CLEAR",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.0,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

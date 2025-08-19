@@ -20,63 +20,65 @@ class ProfilePage extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
       ),
-      body: Container(
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 32),
+        children: [
+          const SizedBox(height: 32),
 
-            // Profile Avatar
-            Container(
+          // Profile Avatar
+          Center(
+            child: Container(
               width: 120,
               height: 120,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
                 shape: BoxShape.rectangle,
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage("assets/images/miyano.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
+          ),
 
-            // Profile Info Cards
-            const SizedBox(height: 32),
-            _buildProfileCard(
-              label: "NAMA ASLI",
-              value: "Azka El Fachrizy",
-              icon: Icons.tag_outlined,
-            ),
-            const SizedBox(height: 16),
-            _buildProfileCard(
-              label: "日本語のユーザー名",
-              value: "Azuka Takayama",
-              icon: Icons.javascript_outlined,
-            ),
-            const SizedBox(height: 16),
+          const SizedBox(height: 32),
 
-            _buildProfileCard(
-              label: "EMAIL",
-              value: "azkaelfachrizy@gmai.com",
-              icon: Icons.email,
-            ),
-            const SizedBox(height: 16),
+          // Profile Info Cards
+          _buildProfileCard(
+            label: "NAMA ASLI",
+            value: "Azka El Fachrizy",
+            icon: Icons.tag_outlined,
+          ),
+          const SizedBox(height: 16),
 
-            _buildProfileCard(
-              label: "Github URL",
-              value: "Github.com/azelzy",
-              icon: Icons.code_outlined,
-            ),
-            const SizedBox(height: 16),
-            _buildProfileCard(
-              label: "Instagram URL",
-              value: "Instagram.com/azelzy",
-              icon: Icons.camera_alt_outlined,
-            ),
+          _buildProfileCard(
+            label: "日本語のユーザー名",
+            value: "Azuka Takayama",
+            icon: Icons.javascript_outlined,
+          ),
+          const SizedBox(height: 16),
 
-            const SizedBox(height: 16),
-          ],
-        ),
+          _buildProfileCard(
+            label: "EMAIL",
+            value: "azkaelfachrizy@gmai.com",
+            icon: Icons.email,
+          ),
+          const SizedBox(height: 16),
+
+          _buildProfileCard(
+            label: "GITHUB URL",
+            value: "Github.com/azelzy",
+            icon: Icons.code_outlined,
+          ),
+          const SizedBox(height: 16),
+
+          _buildProfileCard(
+            label: "INSTAGRAM URL",
+            value: "Instagram.com/azelzy",
+            icon: Icons.camera_alt_outlined,
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }
