@@ -48,38 +48,21 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 32),
 
           // Profile Info Cards
-          _buildProfileCard(
-            label: "NAMA ASLI",
-            value: "Azka El Fachrizy",
-            icon: Icons.tag_outlined,
-          ),
+          _buildProfileCard(label: "NAMA ASLI", value: "Azka El Fachrizy"),
           const SizedBox(height: 16),
 
-          _buildProfileCard(
-            label: "日本語のユーザー名",
-            value: "Azuka Takayama",
-            icon: Icons.javascript_outlined,
-          ),
+          _buildProfileCard(label: "日本語のユーザー名", value: "Azuka Takayama"),
           const SizedBox(height: 16),
 
-          _buildProfileCard(
-            label: "EMAIL",
-            value: "azkaelfachrizy@gmai.com",
-            icon: Icons.email,
-          ),
+          _buildProfileCard(label: "EMAIL", value: "azkaelfachrizy@gmai.com"),
           const SizedBox(height: 16),
 
-          _buildProfileCard(
-            label: "GITHUB URL",
-            value: "Github.com/azelzy",
-            icon: Icons.code_outlined,
-          ),
+          _buildProfileCard(label: "GITHUB URL", value: "Github.com/azelzy"),
           const SizedBox(height: 16),
 
           _buildProfileCard(
             label: "INSTAGRAM URL",
             value: "Instagram.com/azelzy",
-            icon: Icons.camera_alt_outlined,
           ),
           const SizedBox(height: 16),
         ],
@@ -87,11 +70,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileCard({
-    required String label,
-    required String value,
-    required IconData icon,
-  }) {
+  Widget _buildProfileCard({required String label, required String value}) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -108,7 +87,6 @@ class ProfilePage extends StatelessWidget {
               color: Colors.grey[200],
               border: Border.all(color: Colors.black, width: 1),
             ),
-            child: Icon(icon, color: Colors.black, size: 20),
           ),
           const SizedBox(width: 16),
           Expanded(
