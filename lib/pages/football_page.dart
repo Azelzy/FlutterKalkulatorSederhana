@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/football_controller.dart';
 import '../models/football_model.dart';
 import '../routes/routes.dart';
+import '../widget/NavDrawer.dart';
 
 class Footballpage extends StatelessWidget {
   Footballpage({super.key});
@@ -23,6 +24,7 @@ class Footballpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavDrawer(), 
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(

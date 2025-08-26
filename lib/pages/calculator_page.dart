@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/calculator_controller.dart';
+import '../widget/NavDrawer.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
@@ -12,6 +13,7 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavDrawer(), 
       resizeToAvoidBottomInset: true, // biar konten naik saat keyboard muncul
       backgroundColor: Colors.grey[100],
       appBar: AppBar(

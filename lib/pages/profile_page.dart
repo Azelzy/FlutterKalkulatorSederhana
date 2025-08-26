@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/NavDrawer.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -6,6 +7,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavDrawer(), 
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(
