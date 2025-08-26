@@ -130,37 +130,33 @@ class _FootballEditPageState extends State<FootballEditPage> {
   }
 }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    TextInputType? keyboardType,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.black, width: 2),
-      ),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-            fontSize: 12,
-            letterSpacing: 1.0,
-          ),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.all(16),
-          prefixIcon: Icon(icon, color: Colors.black),
-        ),
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
+Widget _buildTextField({
+  required TextEditingController controller,
+  required String label,
+  required IconData icon,
+  TextInputType? keyboardType,
+}) {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border.all(color: Colors.black, width: 2),
+    ),
+    child: TextField(
+      controller: controller,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(
           color: Colors.black,
+          fontWeight: FontWeight.w700,
+          fontSize: 12,
+          letterSpacing: 1.0,
         ),
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.all(16),
+        prefixIcon: Icon(icon, color: Colors.black),
       ),
-    );
-  }
-
+      style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
+    ),
+  );
+}
