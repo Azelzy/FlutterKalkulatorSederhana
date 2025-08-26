@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/football_controller.dart';
 import '../controllers/football_edit_controller.dart';
-import '../models/football_model.dart';
 
 class FootballEditPage extends StatefulWidget {
   const FootballEditPage({super.key});
@@ -14,21 +13,15 @@ class FootballEditPage extends StatefulWidget {
 class _FootballEditPageState extends State<FootballEditPage> {
   final editController = Get.put(FootballEditController());
 
-  // Ambil arguments di sini
-  late final Map<String, dynamic> arguments;
-  late final int index;
-  late final Player player;
-  late final bool isNewPlayer;
-
   @override
   void initState() {
     super.initState();
-    arguments = Get.arguments as Map<String, dynamic>;
-    index = arguments['index'];
-    player = arguments['player'];
-    isNewPlayer = arguments['isNewPlayer'] ?? false;
+    final arguments = Get.arguments as Map<String, dynamic>;
+    editController.index = arguments['index'];
+    editController.player = arguments['player'];
+    editController.isNewPlayer = arguments['isNewPlayer'] ?? false;
 
-    editController.initializeFields(player);
+    editController.initializeFields(editController.player);
   }
 
   @override
@@ -101,7 +94,9 @@ class _FootballEditPageState extends State<FootballEditPage> {
               child: TextButton.icon(
                 icon: const Icon(Icons.save, color: Colors.white),
                 label: Text(
-                  isNewPlayer ? "TAMBAHKANS PEMAINS" : "SIMPANS PERUBAHANS",
+                  editController.isNewPlayer
+                      ? "TAMBAHKANS PEMAINS"
+                      : "SIMPANS PERUBAHANS",
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
@@ -111,15 +106,15 @@ class _FootballEditPageState extends State<FootballEditPage> {
                 onPressed: () {
                   final newPlayer = editController.getPlayer();
 
-                  if (isNewPlayer) {
+                  if (editController.isNewPlayer) {
                     controller.addPlayer(newPlayer);
                   } else {
-                    controller.updatePlayer(index, newPlayer);
+                    controller.updatePlayer(editController.index, newPlayer);
                   }
 
                   Get.back();
                   Get.snackbar(
-                    isNewPlayer ? "TERPERBARUI" : "TERPERBARUI",
+                    editController.isNewPlayer ? "TERPERBARUI" : "TERPERBARUI",
                     newPlayer.name.toUpperCase(),
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: const Color.fromARGB(63, 112, 111, 111),
@@ -133,6 +128,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
       ),
     );
   }
+}
 
   Widget _buildTextField({
     required TextEditingController controller,
@@ -167,4 +163,4 @@ class _FootballEditPageState extends State<FootballEditPage> {
       ),
     );
   }
-}
+

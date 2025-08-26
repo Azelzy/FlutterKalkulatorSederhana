@@ -8,6 +8,9 @@ class FootballEditController extends GetxController {
   final numberController = TextEditingController();
   final imageController = TextEditingController();
 
+  late int index;
+  late Player player;
+  late bool isNewPlayer;
   @override
   void onClose() {
     nameController.dispose();
