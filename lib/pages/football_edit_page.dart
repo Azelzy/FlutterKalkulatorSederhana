@@ -13,7 +13,7 @@ class FootballEditPage extends StatefulWidget {
 
 class _FootballEditPageState extends State<FootballEditPage> {
   final editController = Get.put(FootballEditController());
-  
+
   // Ambil arguments di sini
   late final Map<String, dynamic> arguments;
   late final int index;
@@ -27,7 +27,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
     index = arguments['index'];
     player = arguments['player'];
     isNewPlayer = arguments['isNewPlayer'] ?? false;
-    
+
     editController.initializeFields(player);
   }
 
@@ -36,7 +36,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
     final controller = Get.find<FootballController>();
     return Scaffold(
       backgroundColor: Colors.grey[100],
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           "EDITS PEMAINS",
           style: TextStyle(
@@ -99,10 +99,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
                 border: Border.all(color: Colors.black, width: 2),
               ),
               child: TextButton.icon(
-                icon: const Icon(
-                  Icons.save,
-                  color: Colors.white,
-                ),
+                icon: const Icon(Icons.save, color: Colors.white),
                 label: Text(
                   isNewPlayer ? "TAMBAHKANS PEMAINS" : "SIMPANS PERUBAHANS",
                   style: const TextStyle(
@@ -161,10 +158,7 @@ class _FootballEditPageState extends State<FootballEditPage> {
           ),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(16),
-          prefixIcon: Icon(
-            icon,
-            color: Colors.black,
-          ),
+          prefixIcon: Icon(icon, color: Colors.black),
         ),
         style: const TextStyle(
           fontWeight: FontWeight.w600,

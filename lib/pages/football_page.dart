@@ -113,7 +113,12 @@ class Footballpage extends StatelessWidget {
                           "TELAH DIHAPUS",
                           player.name.toUpperCase(),
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: const Color.fromARGB(63, 112, 111, 111),
+                          backgroundColor: const Color.fromARGB(
+                            63,
+                            112,
+                            111,
+                            111,
+                          ),
                           colorText: Colors.black,
                         );
                       },
@@ -197,7 +202,12 @@ class Footballpage extends StatelessWidget {
                               "ANDA MENEKAN",
                               player.name.toUpperCase(),
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color.fromARGB(63, 112, 111, 111),
+                              backgroundColor: const Color.fromARGB(
+                                63,
+                                112,
+                                111,
+                                111,
+                              ),
                               colorText: Colors.black,
                             );
                           },

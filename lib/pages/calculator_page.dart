@@ -172,7 +172,6 @@ class CalculatorPage extends StatelessWidget {
           ),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(16),
-          prefixIcon: const Icon(Icons.tag, color: Colors.black),
         ),
         style: const TextStyle(
           fontWeight: FontWeight.w600,

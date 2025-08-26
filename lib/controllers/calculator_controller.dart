@@ -48,7 +48,7 @@ class CalculatorController extends GetxController {
     if (_isValidInput()) {
       double angka1 = double.parse(txtAngka1.text);
       double angka2 = double.parse(txtAngka2.text);
-      
+
       if (angka2 == 0) {
         hasil.value = "ERROR";
         operator.value = "÷";
@@ -61,7 +61,7 @@ class CalculatorController extends GetxController {
         );
         return;
       }
-      
+
       double result = angka1 / angka2;
       hasil.value = _formatResult(result);
       operator.value = "÷";
@@ -88,7 +88,7 @@ class CalculatorController extends GetxController {
       return false;
     }
 
-    if (double.tryParse(txtAngka1.text) == null || 
+    if (double.tryParse(txtAngka1.text) == null ||
         double.tryParse(txtAngka2.text) == null) {
       hasil.value = "ERROR";
       Get.snackbar(
