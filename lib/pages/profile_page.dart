@@ -54,10 +54,10 @@ class ProfilePage extends StatelessWidget {
           _buildProfileCard(label: "日本語のユーザー名", value: "Azuka Takayama"),
           const SizedBox(height: 16),
 
-          _buildProfileCard(label: "EMAIL", value: "azkaelfachrizy@gmai.com"),
+          _buildProfileCard(label: "EMAIL", value: "azkaelfachrizy@gmail.com"),
           const SizedBox(height: 16),
 
-          _buildProfileCard(label: "GITHUB URL", value: "Github.com/azelzy"),
+          _buildProfileCard(label: "GITHUB URL", value: "github.com/azelzy"),
           const SizedBox(height: 16),
 
           _buildProfileCard(
