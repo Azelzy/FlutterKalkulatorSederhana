@@ -80,14 +80,6 @@ class ProfilePage extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              border: Border.all(color: Colors.black, width: 1),
-            ),
-          ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
