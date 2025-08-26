@@ -19,7 +19,7 @@ class NavDrawer extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             alignment: Alignment.bottomLeft,
             child: const Text(
-              "MENU",
+              "BURGIR",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
