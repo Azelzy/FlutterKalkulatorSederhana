@@ -4,18 +4,16 @@ import '../controllers/calculator_controller.dart';
 import '../widget/NavDrawer.dart';
 
 class CalculatorPage extends StatelessWidget {
-  CalculatorPage({super.key});
+  const CalculatorPage({super.key});
 
-  // final CalculatorController calculatorController = Get.put(
-  //   CalculatorController(),
-  // );
-  final calculatorController = Get.find<CalculatorController>();
+  // Use Get.find with safe access
+  CalculatorController get calculatorController => Get.find<CalculatorController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavDrawer(), 
-      resizeToAvoidBottomInset: true, // biar konten naik saat keyboard muncul
+      drawer: const NavDrawer(),
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(
@@ -30,30 +28,24 @@ class CalculatorPage extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2), // tinggi garis
+          preferredSize: Size.fromHeight(2),
           child: Container(color: Colors.black, height: 2),
         ),
       ),
-
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           const SizedBox(height: 24),
-
-          // Input fields
           _buildInputField(
             controller: calculatorController.txtAngka1,
             label: "ANGKA PERTAMAX",
           ),
           const SizedBox(height: 16),
-
           _buildInputField(
             controller: calculatorController.txtAngka2,
             label: "ANGKA KEDUAX",
           ),
           const SizedBox(height: 32),
-
-          // Operator buttons
           Row(
             children: [
               Expanded(
@@ -89,8 +81,6 @@ class CalculatorPage extends StatelessWidget {
               ),
             ],
           ),
-
-          // Result display
           const SizedBox(height: 32),
           Container(
             width: double.infinity,
@@ -125,10 +115,7 @@ class CalculatorPage extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(height: 16),
-
-          // Clear button
           Container(
             width: double.infinity,
             height: 48,

@@ -6,10 +6,9 @@ import '../routes/routes.dart';
 import '../widget/NavDrawer.dart';
 
 class Footballpage extends StatelessWidget {
-  Footballpage({super.key});
+  const Footballpage({super.key});
 
-  // final FootballController footballController = Get.put(FootballController());
-  final footballController = Get.find<FootballController>();
+  FootballController get footballController => Get.find<FootballController>();
 
   void _addNewPlayer() {
     final newPlayer = Player(name: "", position: "", number: 0, imageUrl: "");
@@ -41,7 +40,7 @@ class Footballpage extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2), // tinggi garis
+          preferredSize: Size.fromHeight(2),
           child: Container(color: Colors.black, height: 2),
         ),
       ),
@@ -117,12 +116,7 @@ class Footballpage extends StatelessWidget {
                           "TELAH DIHAPUS",
                           player.name.toUpperCase(),
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: const Color.fromARGB(
-                            63,
-                            112,
-                            111,
-                            111,
-                          ),
+                          backgroundColor: const Color.fromARGB(63, 112, 111, 111),
                           colorText: Colors.black,
                         );
                       },
@@ -206,12 +200,7 @@ class Footballpage extends StatelessWidget {
                               "ANDA MENEKAN",
                               player.name.toUpperCase(),
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color.fromARGB(
-                                63,
-                                112,
-                                111,
-                                111,
-                              ),
+                              backgroundColor: const Color.fromARGB(63, 112, 111, 111),
                               colorText: Colors.black,
                             );
                           },
