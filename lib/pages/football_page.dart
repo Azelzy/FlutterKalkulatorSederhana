@@ -7,7 +7,9 @@ import '../widget/NavDrawer.dart';
 
 class Footballpage extends StatelessWidget {
   Footballpage({super.key});
-  final FootballController footballController = Get.put(FootballController());
+
+  // final FootballController footballController = Get.put(FootballController());
+  final footballController = Get.find<FootballController>();
 
   void _addNewPlayer() {
     final newPlayer = Player(name: "", position: "", number: 0, imageUrl: "");
@@ -24,7 +26,7 @@ class Footballpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavDrawer(), 
+      drawer: const NavDrawer(),
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(

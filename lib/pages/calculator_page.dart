@@ -6,9 +6,10 @@ import '../widget/NavDrawer.dart';
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
 
-  final CalculatorController calculatorController = Get.put(
-    CalculatorController(),
-  );
+  // final CalculatorController calculatorController = Get.put(
+  //   CalculatorController(),
+  // );
+  final calculatorController = Get.find<CalculatorController>();
 
   @override
   Widget build(BuildContext context) {

@@ -12,11 +12,11 @@ class BottomNavController extends GetxController {
   String get currentPageTitle {
     switch (currentIndex.value) {
       case 0:
-        return 'CALCULATOR';
+        return 'CALCULATORS';
       case 1:
-        return 'PLAYERS';
+        return 'PEMAINS';
       case 2:
-        return 'PROFILE';
+        return 'PROFILS';
       default:
         return '';
     }

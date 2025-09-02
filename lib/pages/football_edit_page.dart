@@ -11,7 +11,8 @@ class FootballEditPage extends StatefulWidget {
 }
 
 class _FootballEditPageState extends State<FootballEditPage> {
-  final editController = Get.put(FootballEditController());
+  // final editController = Get.put(FootballEditController());
+  final editController = Get.find<FootballEditController>();
 
   @override
   void initState() {

@@ -60,7 +60,7 @@ class BottomNavPage extends StatelessWidget {
                         : Colors.black,
                   ),
                 ),
-                label: "CALC",
+                label: "CALCULATORS",
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -80,7 +80,7 @@ class BottomNavPage extends StatelessWidget {
                         : Colors.black,
                   ),
                 ),
-                label: "PLAYERS",
+                label: "PEMAINS",
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -100,7 +100,7 @@ class BottomNavPage extends StatelessWidget {
                         : Colors.black,
                   ),
                 ),
-                label: "PROFILE",
+                label: "PROFILS",
               ),
             ],
           ),
