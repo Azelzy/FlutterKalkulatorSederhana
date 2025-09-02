@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:laihan01/controllers/calculator_controller.dart';
 import '../controllers/bottom_nav_controller.dart';
 import 'calculator_page.dart';
 import 'football_page.dart';
 import 'profile_page.dart';
 
 class BottomNavPage extends StatelessWidget {
-  BottomNavPage({super.key});
-
-  final BottomNavController controller = Get.put(BottomNavController());
+  BottomNavPage({super.key}){
+    if (!Get.isRegistered<CalculatorController>()) {
+      Get.put(CalculatorController());
+    }
+  }
+    // Ensure CalculatorController is registered
+  // final BottomNavController controller = Get.put(BottomNavController());
+  final controller = Get.find<BottomNavController>();
 
   final List<Widget> pages = [CalculatorPage(), Footballpage(), ProfilePage()];
 

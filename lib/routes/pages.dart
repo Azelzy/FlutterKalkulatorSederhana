@@ -1,5 +1,6 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:laihan01/bindings/bottom_nav_binding.dart';
 import 'package:laihan01/bindings/calculator_binding.dart';
 import 'package:laihan01/bindings/football_binding.dart';
 import 'package:laihan01/bindings/football_edit_binding.dart';
@@ -14,7 +15,7 @@ class AppPages {
     GetPage(name: AppRoutes.calculator, page: () => CalculatorPage(),binding: CalculatorBinding()),
     GetPage(name: AppRoutes.footballplayers, page: () => Footballpage(),binding: FootballBinding()),
     GetPage(name: AppRoutes.footballedit,page: () => const FootballEditPage(),binding: FootballEditBinding()),
-    GetPage(name: AppRoutes.bottomNav, page: () => BottomNavPage()),
+    GetPage(name: AppRoutes.bottomNav, page: () => BottomNavPage(),binding: BottomNavPageBinding()),
     
     // Add other pages here as needed
   ];
