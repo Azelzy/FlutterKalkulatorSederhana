@@ -7,10 +7,13 @@ import 'package:laihan01/bindings/football_edit_binding.dart';
 import 'package:laihan01/pages/calculator_page.dart';
 import 'package:laihan01/pages/football_edit_page.dart';
 import 'package:laihan01/pages/football_page.dart';
+import 'package:laihan01/pages/login_page.dart';
 import 'package:laihan01/routes/routes.dart';
 import 'package:laihan01/pages/bottom_nav_page.dart';
 import 'package:laihan01/pages/splashscreen_page.dart';
 import 'package:laihan01/bindings/splashscreen_binding.dart';
+
+import 'package:laihan01/bindings/login_binding.dart';
 
 class AppPages {
   static final pages = [
@@ -19,6 +22,9 @@ class AppPages {
     GetPage(name: AppRoutes.footballedit,page: () => const FootballEditPage(),binding: FootballEditBinding()),
     GetPage(name: AppRoutes.bottomNav, page: () => BottomNavPage(),binding: BottomNavPageBinding()),
     GetPage(name: AppRoutes.splashscreen, page: () => SplashscreenPage(),binding: SplashscreenBinding()),  
+    GetPage(name: AppRoutes.login, page: () =>LoginPage(),binding: LoginBinding()),
+  
+
     
     // Add other pages here as needed
   ];
