@@ -11,7 +11,7 @@ class SplashscreenController extends GetxController {
   }
 
   checkLogin() async {
-    await Future.delayed(Duration(seconds: 3)); // Simulate a delay for splash screen
+    await Future.delayed(Duration(seconds: 5)); // Simulate a delay for splash screen
     final prefs = await SharedPreferences.getInstance();
     final savedUsername = prefs.getString("username");
     if (savedUsername != null) {

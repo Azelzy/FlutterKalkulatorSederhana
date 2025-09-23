@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/splashscreen_controller.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashscreenPage extends StatelessWidget {
   SplashscreenPage({super.key});
@@ -82,14 +83,11 @@ class SplashscreenPage extends StatelessWidget {
 
               // Loading Animation
               Container(
-                width: 200,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black, width: 2),
-                ),
-                child: LinearProgressIndicator(color: Colors.black),
-              ),
+                child: LoadingAnimationWidget.threeArchedCircle(
+                      color: const Color.fromARGB(255, 143, 143, 143),
+                size: 50,
+                    ),
+                  ),
 
               const SizedBox(height: 16),
 
