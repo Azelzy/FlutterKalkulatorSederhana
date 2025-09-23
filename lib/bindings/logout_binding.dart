@@ -5,5 +5,6 @@ class LogoutBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<LogoutController>(() => LogoutController());
+    
   }
 }

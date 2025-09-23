@@ -31,12 +31,15 @@ class SplashscreenPage extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              
+
               const SizedBox(height: 40),
-              
+
               // App Title
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 24,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.black,
                   border: Border.all(color: Colors.black, width: 3),
@@ -51,12 +54,15 @@ class SplashscreenPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // Subtitle
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 20,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: Colors.black, width: 2),
@@ -71,9 +77,9 @@ class SplashscreenPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 60),
-              
+
               // Loading Animation
               Container(
                 width: 200,
@@ -82,26 +88,11 @@ class SplashscreenPage extends StatelessWidget {
                   color: Colors.white,
                   border: Border.all(color: Colors.black, width: 2),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        color: Colors.black,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                child: LinearProgressIndicator(color: Colors.black),
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               Text(
                 "LOADING...",
                 style: TextStyle(
