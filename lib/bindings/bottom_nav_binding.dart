@@ -6,8 +6,8 @@ import 'package:laihan01/controllers/football_controller.dart';
 class BottomNavPageBinding extends Bindings {
   @override
   void dependencies() {
-    // Use lazyPut for main bottom nav controller
-    Get.lazyPut<BottomNavController>(() => BottomNavController());
+    // Use put for main bottom nav controller to ensure it's available immediately
+    Get.put<BottomNavController>(BottomNavController());
     
     // Lazily register all tab controllers
     Get.lazyPut<CalculatorController>(() => CalculatorController());

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widget/NavDrawer.dart';
+import '../controllers/bottom_nav_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<BottomNavController>();
+    
     return Scaffold(
       drawer: const NavDrawer(), 
       backgroundColor: Colors.grey[100],
@@ -65,6 +69,79 @@ class ProfilePage extends StatelessWidget {
           _buildProfileCard(
             label: "INSTAGRAM URL",
             value: "Instagram.com/azelzy",
+          ),
+          const SizedBox(height: 32),
+
+          // Logout Button Section
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black, width: 2),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "PENGATURAN AKUN",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.grey[600],
+                    letterSpacing: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: controller.isLoggingOut.value 
+                          ? Colors.grey[400] 
+                          : Colors.red,
+                      border: Border.all(color: Colors.black, width: 2),
+                    ),
+                    child: TextButton.icon(
+                      icon: controller.isLoggingOut.value
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : const Icon(Icons.logout, color: Colors.white),
+                      label: Text(
+                        controller.isLoggingOut.value 
+                            ? "LOGGING OUT..." 
+                            : "KELUAR DARI AKUN",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 1.5,
+                          fontSize: 14,
+                        ),
+                      ),
+                      onPressed: controller.isLoggingOut.value 
+                          ? null 
+                          : controller.logout,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Anda akan keluar dari aplikasi dan kembali ke halaman login",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[600],
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
         ],
