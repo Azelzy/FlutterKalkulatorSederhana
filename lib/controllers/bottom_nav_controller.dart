@@ -8,7 +8,7 @@ class BottomNavController extends GetxController {
   var isLoggingOut = false.obs;
 
   void changeTabIndex(int index) {
-    if (index >= 0 && index <= 2) {
+    if (index >= 0 && index <= 3) {
       currentIndex.value = index;
     }
   }
@@ -20,6 +20,8 @@ class BottomNavController extends GetxController {
       case 1:
         return 'PEMAINS';
       case 2:
+        return 'CONTACTS';
+      case 3:
         return 'PROFILS';
       default:
         return '';
@@ -31,7 +33,7 @@ class BottomNavController extends GetxController {
     Get.dialog(
       AlertDialog(
         backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
           side: BorderSide(color: Colors.black, width: 3),
         ),

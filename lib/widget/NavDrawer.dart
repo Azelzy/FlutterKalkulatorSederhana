@@ -73,10 +73,19 @@ class NavDrawer extends StatelessWidget {
                 ),
                 const Divider(height: 1, color: Colors.black),
                 _buildNavItem(
+                  icon: Icons.contacts,
+                  title: "CONTACT",
+                  onTap: () {
+                    controller.changeTabIndex(2);
+                    Get.back();
+                  },
+                ),
+                const Divider(height: 1, color: Colors.black),
+                _buildNavItem(
                   icon: Icons.person,
                   title: "PROFILE",
                   onTap: () {
-                    controller.changeTabIndex(2);
+                    controller.changeTabIndex(3);
                     Get.back();
                   },
                 ),

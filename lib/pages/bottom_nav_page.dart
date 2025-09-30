@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import '../controllers/bottom_nav_controller.dart';
 import '../controllers/calculator_controller.dart';
 import '../controllers/football_controller.dart';
+import '../controllers/contact_controller.dart';
 import 'calculator_page.dart';
 import 'football_page.dart';
 import 'profile_page.dart';
+import 'contact_page.dart';
 
 class BottomNavPage extends StatelessWidget {
   BottomNavPage({super.key}){
@@ -15,11 +17,19 @@ class BottomNavPage extends StatelessWidget {
     if (!Get.isRegistered<FootballController>()) {
       Get.put(FootballController());
     }
+    if (!Get.isRegistered<ContactController>()) {
+      Get.put(ContactController());
+    }
     // Tambahkan controller lain jika diperlukan
   }
 
   final controller = Get.find<BottomNavController>();
-  final List<Widget> pages = [CalculatorPage(), Footballpage(), ProfilePage()];
+  final List<Widget> pages = [
+    const CalculatorPage(),
+    const Footballpage(),
+    const ContactPage(),
+    const ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +38,7 @@ class BottomNavPage extends StatelessWidget {
         backgroundColor: Colors.grey[100],
         body: pages[controller.currentIndex.value],
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(top: BorderSide(color: Colors.black, width: 2)),
           ),
@@ -40,12 +50,12 @@ class BottomNavPage extends StatelessWidget {
             unselectedItemColor: Colors.grey[600],
             selectedLabelStyle: const TextStyle(
               fontWeight: FontWeight.w900,
-              fontSize: 10,
+              fontSize: 9,
               letterSpacing: 0.5,
             ),
             unselectedLabelStyle: const TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: 10,
+              fontSize: 9,
               letterSpacing: 0.5,
             ),
             type: BottomNavigationBarType.fixed,
@@ -69,7 +79,7 @@ class BottomNavPage extends StatelessWidget {
                         : Colors.black,
                   ),
                 ),
-                label: "CALCULATORS",
+                label: "CALCULATOR",
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -89,7 +99,7 @@ class BottomNavPage extends StatelessWidget {
                         : Colors.black,
                   ),
                 ),
-                label: "PEMAINS",
+                label: "PEMAIN",
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -102,14 +112,34 @@ class BottomNavPage extends StatelessWidget {
                     border: Border.all(color: Colors.black, width: 1),
                   ),
                   child: Icon(
-                    Icons.person,
+                    Icons.contacts,
                     size: 16,
                     color: controller.currentIndex.value == 2
                         ? Colors.white
                         : Colors.black,
                   ),
                 ),
-                label: "PROFILS",
+                label: "CONTACT",
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: controller.currentIndex.value == 3
+                        ? Colors.black
+                        : Colors.transparent,
+                    border: Border.all(color: Colors.black, width: 1),
+                  ),
+                  child: Icon(
+                    Icons.person,
+                    size: 16,
+                    color: controller.currentIndex.value == 3
+                        ? Colors.white
+                        : Colors.black,
+                  ),
+                ),
+                label: "PROFILE",
               ),
             ],
           ),

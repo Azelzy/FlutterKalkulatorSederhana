@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:laihan01/controllers/bottom_nav_controller.dart';
 import 'package:laihan01/controllers/calculator_controller.dart';
 import 'package:laihan01/controllers/football_controller.dart';
+import 'package:laihan01/controllers/contact_controller.dart';
 
 class BottomNavPageBinding extends Bindings {
   @override
@@ -12,5 +13,6 @@ class BottomNavPageBinding extends Bindings {
     // Lazily register all tab controllers
     Get.lazyPut<CalculatorController>(() => CalculatorController());
     Get.lazyPut<FootballController>(() => FootballController());
+    Get.lazyPut<ContactController>(() => ContactController());
   }
 }
