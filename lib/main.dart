@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: AppRoutes.splashscreen, // arahkan ke bottom nav
+      initialRoute: AppRoutes.splashscreen, 
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
     );

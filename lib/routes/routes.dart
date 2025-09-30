@@ -6,5 +6,6 @@ class AppRoutes{
   static const String profile = '/profile';
   static const String splashscreen = '/splashscreen';
   static const String login = '/login';
+  static const String contact = '/contact';
   // Add other routes here as needed   
 }
