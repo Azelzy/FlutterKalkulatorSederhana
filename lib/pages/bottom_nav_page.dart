@@ -26,7 +26,7 @@ class BottomNavPage extends StatelessWidget {
   final controller = Get.find<BottomNavController>();
   final List<Widget> pages = [
     const CalculatorPage(),
-    const Footballpage(),
+    Footballpage(),
     const ContactPage(),
     const ProfilePage(),
   ];

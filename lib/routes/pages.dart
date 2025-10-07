@@ -27,7 +27,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.footballplayers,
-      page: () => const Footballpage(),
+      page: () => Footballpage(),
       binding: FootballBinding(),
     ),
     GetPage(
