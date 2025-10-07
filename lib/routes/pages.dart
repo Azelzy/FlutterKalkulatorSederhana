@@ -15,6 +15,8 @@ import 'package:laihan01/pages/bottom_nav_page.dart';
 import 'package:laihan01/pages/splashscreen_page.dart';
 import 'package:laihan01/bindings/splashscreen_binding.dart';
 import 'package:laihan01/bindings/login_binding.dart';
+import 'package:laihan01/bindings/example_binding.dart';
+import 'package:laihan01/pages/example_page.dart';
 
 class AppPages {
   static final pages = [
@@ -54,5 +56,10 @@ class AppPages {
       binding: ContactBinding(),
     ),
     // Add other pages here as needed
+    GetPage(
+      name: AppRoutes.example,
+      page: () => ExamplePage(),
+      binding: ExampleBinding(),
+    ),
   ];
 }
