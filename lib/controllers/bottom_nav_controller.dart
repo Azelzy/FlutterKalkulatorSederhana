@@ -125,7 +125,7 @@ class BottomNavController extends GetxController {
       
       // Navigate to login page and clear all previous routes
       await Future.delayed(const Duration(milliseconds: 500));
-      Get.offAllNamed(AppRoutes.login);
+      Get.offAllNamed(AppRoutes.loginApi);
     } catch (e) {
       Get.snackbar(
         "ERROR",

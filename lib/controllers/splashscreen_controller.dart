@@ -11,13 +11,13 @@ class SplashscreenController extends GetxController {
   }
 
   checkLogin() async {
-    await Future.delayed(Duration(seconds: 7)); // Simulate a delay for splash screen
+    await Future.delayed(Duration(seconds: 2)); // Simulate a delay for splash screen
     final prefs = await SharedPreferences.getInstance();
     final savedUsername = prefs.getString("username");
     if (savedUsername != null) {
       Get.offAllNamed(AppRoutes.bottomNav);
     } else {
-      Get.offAllNamed(AppRoutes.login);
+      Get.offAllNamed(AppRoutes.loginApi);
     }
   }
 }

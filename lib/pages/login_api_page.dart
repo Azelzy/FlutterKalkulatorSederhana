@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/login_controller.dart';
+import '../controllers/login_api_controller.dart';
 
 class LoginApiPage extends StatelessWidget {
   const LoginApiPage({super.key});
 
-  LoginController get loginController => Get.find<LoginController>();
-
   @override
   Widget build(BuildContext context) {
+    // Get controller using Get.find() yang sudah di-inject via binding
+    final LoginApiController controller = Get.find<LoginApiController>();
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SafeArea(
@@ -28,23 +29,26 @@ class LoginApiPage extends StatelessWidget {
                       border: Border.all(color: Colors.black, width: 3),
                     ),
                     child: const Icon(
-                      Icons.lock,
+                      Icons.cloud,
                       size: 60,
                       color: Colors.black,
                     ),
                   ),
-                  
+
                   const SizedBox(height: 32),
-                  
+
                   // Title
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 24,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       border: Border.all(color: Colors.black, width: 3),
                     ),
                     child: const Text(
-                      "AUTHENTICATION",
+                      "API LOGIN",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -53,11 +57,14 @@ class LoginApiPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 8),
-                  
+
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 16,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.black, width: 2),
@@ -72,41 +79,41 @@ class LoginApiPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 40),
-                  
+
                   // Username Field
                   _buildInputField(
-                    controller: loginController.usernameController,
+                    controller: controller.usernameController,
                     label: "USERNAME",
                     icon: Icons.person,
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   // Password Field
                   _buildInputField(
-                    controller: loginController.passwordController,
+                    controller: controller.passwordController,
                     label: "PASSWORD",
                     icon: Icons.lock,
                     isPassword: true,
                   ),
-                  
+
                   const SizedBox(height: 32),
-                  
+
                   // Login Button
                   Obx(
                     () => Container(
                       width: double.infinity,
                       height: 56,
                       decoration: BoxDecoration(
-                        color: loginController.isLoading.value 
-                            ? Colors.grey[400] 
+                        color: controller.isLoading.value
+                            ? Colors.grey[400]
                             : Colors.black,
                         border: Border.all(color: Colors.black, width: 2),
                       ),
                       child: TextButton.icon(
-                        icon: loginController.isLoading.value
+                        icon: controller.isLoading.value
                             ? const SizedBox(
                                 width: 20,
                                 height: 20,
@@ -117,7 +124,7 @@ class LoginApiPage extends StatelessWidget {
                               )
                             : const Icon(Icons.login, color: Colors.white),
                         label: Text(
-                          loginController.isLoading.value ? "LOADING..." : "MASUK",
+                          controller.isLoading.value ? "LOADING..." : "MASUK",
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
@@ -125,15 +132,15 @@ class LoginApiPage extends StatelessWidget {
                             fontSize: 14,
                           ),
                         ),
-                        onPressed: loginController.isLoading.value 
-                            ? null 
-                            : loginController.login,
+                        onPressed: controller.isLoading.value
+                            ? null
+                            : controller.loginApi,
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Demo Credentials Info
                   Container(
                     width: double.infinity,
@@ -145,7 +152,7 @@ class LoginApiPage extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "DEMO CREDENTIALS",
+                          "API CREDENTIALS",
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w900,
@@ -155,7 +162,7 @@ class LoginApiPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          "Username: admin\nPassword: admin",
+                          "Username: admin123\nPassword: admin123",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
