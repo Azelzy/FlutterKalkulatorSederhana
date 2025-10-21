@@ -17,6 +17,7 @@ import 'package:laihan01/bindings/splashscreen_binding.dart';
 import 'package:laihan01/bindings/login_binding.dart';
 import 'package:laihan01/bindings/example_binding.dart';
 import 'package:laihan01/pages/example_page.dart';
+import 'package:laihan01/pages/login_api_page.dart';
 
 class AppPages {
   static final pages = [
@@ -61,5 +62,11 @@ class AppPages {
       page: () => ExamplePage(),
       binding: ExampleBinding(),
     ),
+    GetPage(
+      name: AppRoutes.loginApi,
+      page: () => const LoginApiPage(),
+      binding: LoginBinding(),
+    ),
+    
   ];
 }
