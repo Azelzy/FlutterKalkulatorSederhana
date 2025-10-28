@@ -3,7 +3,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:laihan01/routes/pages.dart';
 import 'package:laihan01/routes/routes.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
       ),
       initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.pages,
