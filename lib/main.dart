@@ -13,10 +13,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // 🔹 Inisialisasi Firebase Analytics
+// FIREBASE ANALTICYS
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
-  // 🔹 Inisialisasi Notification Service (FCM)
+//FCM
   final notificationService = NotificationService();
   await notificationService.initialize();
 

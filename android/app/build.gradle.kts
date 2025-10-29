@@ -44,7 +44,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-messaging")
 
-    // desugaring untuk fitur Java modern
+    // desugaring
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     // multidex jika dependensi banyak
