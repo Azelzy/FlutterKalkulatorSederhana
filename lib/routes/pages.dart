@@ -1,6 +1,7 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 import 'package:laihan01/bindings/bottom_nav_binding.dart';
+import 'package:laihan01/bindings/notification_binding.dart';
 import 'package:laihan01/bindings/calculator_binding.dart';
 import 'package:laihan01/bindings/football_binding.dart';
 import 'package:laihan01/bindings/football_edit_binding.dart';
@@ -25,49 +26,48 @@ class AppPages {
     GetPage(
       name: AppRoutes.calculator,
       page: () => const CalculatorPage(),
-      binding: CalculatorBinding(),
+      bindings: [CalculatorBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.footballplayers,
       page: () => Footballpage(),
-      binding: FootballBinding(),
+      bindings: [FootballBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.footballedit,
       page: () => const FootballEditPage(),
-      binding: FootballEditBinding(),
+      bindings: [FootballEditBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.bottomNav,
       page: () => BottomNavPage(),
-      binding: BottomNavPageBinding(),
+      bindings: [BottomNavPageBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.splashscreen,
       page: () => SplashscreenPage(),
-      binding: SplashscreenBinding(),
+      bindings: [SplashscreenBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),
-      binding: LoginBinding(),
+      bindings: [LoginBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.contact,
       page: () => const ContactPage(),
-      binding: ContactBinding(),
+      bindings: [ContactBinding(), NotificationBinding()],
     ),
     // Add other pages here as needed
     GetPage(
       name: AppRoutes.example,
       page: () => ExamplePage(),
-      binding: ExampleBinding(),
+      bindings: [ExampleBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.loginApi,
       page: () => const LoginApiPage(),
-      binding: LoginApiBinding(),
+      bindings: [LoginApiBinding(), NotificationBinding()],
     ),
-    
   ];
 }
