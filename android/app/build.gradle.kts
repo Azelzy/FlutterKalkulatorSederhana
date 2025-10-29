@@ -10,6 +10,15 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+    defaultConfig {
+        applicationId = "com.example.laihan01"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -18,24 +27,28 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-        freeCompilerArgs += listOf("-Xjvm-default=all")
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xjvm-default=all")
     }
 
-    defaultConfig {
-        applicationId = "com.example.laihan01"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
-
-    // ...existing code...
 }
 
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-messaging")
+
+    // desugaring untuk fitur Java modern
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
+    // multidex jika dependensi banyak
+    implementation("androidx.multidex:multidex:2.0.1")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

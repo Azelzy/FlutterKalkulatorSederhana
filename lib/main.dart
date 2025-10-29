@@ -5,6 +5,7 @@ import 'package:laihan01/routes/pages.dart';
 import 'package:laihan01/routes/routes.dart';
 import 'package:laihan01/services/notification_service.dart';
 import 'firebase_options.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,16 +13,19 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Initialize notification service
+  // 🔹 Inisialisasi Firebase Analytics
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  // 🔹 Inisialisasi Notification Service (FCM)
   final notificationService = NotificationService();
   await notificationService.initialize();
 
-  runApp(const MyApp());
+  runApp(MyApp(analytics: analytics));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  final FirebaseAnalytics? analytics;
+  const MyApp({super.key, this.analytics});
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -32,6 +36,10 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [
+        if (analytics != null)
+          FirebaseAnalyticsObserver(analytics: analytics!),
+      ],
     );
   }
 }
