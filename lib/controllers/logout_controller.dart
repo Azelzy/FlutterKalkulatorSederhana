@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import '../routes/routes.dart';
+import '../helper/shared_pref_helper.dart';
 
 class LogoutController extends GetxController {
   var isLoggingOut = false.obs;
@@ -14,30 +14,52 @@ class LogoutController extends GetxController {
       isLoggingOut.value = true;
       
       try {
-        // Clear shared preferences
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.remove('username');
+        print('\n========================================');
+        print('🚪 LOGOUT STARTED');
+        print('========================================');
+        
+        // Print data sebelum dihapus
+        print('\n📋 Data before logout:');
+        await SharedPrefHelper.printAll();
+        
+        // Clear shared preferences (token + username)
+        await SharedPrefHelper.clearLoginData();
+        
+        print('✅ Token removed');
+        print('✅ Username removed');
+        
+        // Print data setelah dihapus
+        print('\n📋 Data after logout:');
+        await SharedPrefHelper.printAll();
         
         // Show success message
         Get.snackbar(
           "LOGOUT BERHASIL",
           "Anda telah keluar dari aplikasi",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: const Color.fromARGB(63, 112, 111, 111),
+          backgroundColor: Colors.grey[300],
           colorText: Colors.black,
+          icon: const Icon(Icons.check_circle, color: Colors.green),
           duration: const Duration(seconds: 2),
         );
         
+        print('========================================');
+        print('✅ LOGOUT COMPLETED');
+        print('========================================\n');
+        
         // Navigate to login page and clear all previous routes
         await Future.delayed(const Duration(milliseconds: 500));
-        Get.offAllNamed(AppRoutes.login);
+        Get.offAllNamed(AppRoutes.loginApi);
       } catch (e) {
+        print('❌ Logout Error: $e');
+        
         Get.snackbar(
           "ERROR",
           "Terjadi kesalahan saat logout",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red.withValues(alpha: 0.2),
+          backgroundColor: Colors.red[100],
           colorText: Colors.black,
+          icon: const Icon(Icons.error, color: Colors.red),
         );
       } finally {
         isLoggingOut.value = false;
@@ -51,7 +73,7 @@ class LogoutController extends GetxController {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
-          side: BorderSide(color: Colors.black, width: 3),
+          side: const BorderSide(color: Colors.black, width: 3),
         ),
         title: Container(
           padding: const EdgeInsets.all(8),

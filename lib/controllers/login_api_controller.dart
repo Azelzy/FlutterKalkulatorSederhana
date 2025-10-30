@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:laihan01/models/login_model.dart';
 import 'package:laihan01/networks/client_network.dart';
 import 'package:laihan01/routes/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginApiController extends GetxController {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  
   var isLoading = false.obs;
 
   @override
@@ -21,153 +21,178 @@ class LoginApiController extends GetxController {
 
   void loginApi() async {
     print('\n========================================');
-    print('LOGIN API STARTED');
+    print('🚀 LOGIN API STARTED');
     print('========================================');
-
+    
     // Validasi input
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      print('❌ Validation Failed: Username atau password kosong');
       Get.snackbar(
-        "ERROR [VALIDATION]",
+        "ERROR",
         "Username dan password tidak boleh kosong",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.grey[300],
+        backgroundColor: const Color.fromARGB(63, 112, 111, 111),
         colorText: Colors.black,
-        icon: const Icon(Icons.warning, color: Colors.red),
       );
       return;
     }
 
+    print('✅ Validation Passed');
+    print('📝 Username: ${usernameController.text}');
+    print('📝 Password: ${passwordController.text}');
+    
     isLoading.value = true;
 
     try {
+      // Prepare request data
       final requestData = {
         'username': usernameController.text,
         'password': passwordController.text,
       };
 
-      print('\nSending request...');
+      print('\n----------------------------------------');
+      print('📤 REQUEST DETAILS:');
+      print('----------------------------------------');
+      print('URL: ${ClientNetwork.login}');
+      print('Method: POST');
+      print('Body Parameters:');
+      requestData.forEach((key, value) {
+        print('  - $key: $value');
+      });
+      print('----------------------------------------\n');
+
+      // Hit API
+      print('⏳ Sending request to server...');
       final response = await http.post(
         Uri.parse(ClientNetwork.login),
         body: requestData,
       );
 
-      print('\nRESPONSE DETAILS:');
+      print('\n----------------------------------------');
+      print('📥 RESPONSE DETAILS:');
+      print('----------------------------------------');
       print('Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}\n');
+      print('Status Message: ${response.reasonPhrase}');
+      print('Response Headers: ${response.headers}');
+      print('Response Body: ${response.body}');
+      print('Response Length: ${response.body.length} characters');
+      print('----------------------------------------\n');
 
-      LoginModel? loginModel;
-      try {
-        loginModel = loginModelFromJson(response.body);
-      } catch (e) {
-        print('JSON Parse Error: $e');
-      }
+      // Parse response
+      if (response.statusCode == 200) {
+        print('✅ Status Code 200 - OK');
+        
+        try {
+          final LoginModel loginModel = loginModelFromJson(response.body);
+          
+          print('\n----------------------------------------');
+          print('📦 PARSED MODEL:');
+          print('----------------------------------------');
+          print('Status: ${loginModel.status}');
+          print('Message: ${loginModel.message}');
+          print('Token: ${loginModel.token}');
+          print('Token Length: ${loginModel.token.length} characters');
+          print('----------------------------------------\n');
 
-      // Snackbar builder helper (biar rapi)
-      void showSnackbar(String title, String message, Color bgColor, IconData icon) {
-        Get.snackbar(
-          title,
-          message,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: bgColor,
-          colorText: Colors.black,
-          icon: Icon(icon, color: Colors.black87),
-          duration: const Duration(seconds: 3),
-        );
-      }
-
-      // Tangani berdasarkan status code
-      switch (response.statusCode) {
-        case 200:
-          print('Status 200 OK');
-          if (loginModel != null && loginModel.status) {
-            // Simpan token
+          if (loginModel.status) {
+            print('✅ Login Status: SUCCESS');
+            
+            // Simpan token ke SharedPreferences
             final prefs = await SharedPreferences.getInstance();
             await prefs.setString('token', loginModel.token);
+            await prefs.setString('username', usernameController.text);
 
-            showSnackbar(
-              "SUCCESS [${response.statusCode}]",
-              "Pesan: ${loginModel.message}",
-              Colors.green[200]!,
-              Icons.check_circle,
+            print('💾 Token saved to SharedPreferences');
+            print('💾 Username saved to SharedPreferences');
+
+            Get.snackbar(
+              "BERHASIL",
+              loginModel.message,
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.green[100],
+              colorText: Colors.black,
             );
 
             isLoading.value = false;
+            
+            print('🔄 Navigating to: ${AppRoutes.bottomNav}');
+            print('========================================');
+            print('✅ LOGIN API COMPLETED SUCCESSFULLY');
+            print('========================================\n');
+            
+            // Navigate ke halaman utama
             Get.offAllNamed(AppRoutes.bottomNav);
           } else {
-            showSnackbar(
-              "FAILED [${response.statusCode}]",
-              "Pesan: ${loginModel?.message ?? 'Login gagal tanpa pesan JSON'}",
-              Colors.orange[200]!,
-              Icons.warning_amber_rounded,
-            );
+            print('❌ Login Status: FAILED');
+            print('📝 Reason: ${loginModel.message}');
+            
             isLoading.value = false;
+            Get.snackbar(
+              "ERROR",
+              loginModel.message,
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red[100],
+              colorText: Colors.black,
+            );
+            
+            print('========================================');
+            print('❌ LOGIN API FAILED');
+            print('========================================\n');
           }
-          break;
-
-        case 400:
-          showSnackbar(
-            "ERROR [400]",
-            "Bad Request — ${loginModel?.message ?? 'Periksa kembali data yang dikirim'}",
-            Colors.orange[200]!,
-            Icons.error_outline,
-          );
+        } catch (parseError) {
           isLoading.value = false;
-          break;
-
-        case 401:
-          showSnackbar(
-            "ERROR [401]",
-            "Unauthorized — ${loginModel?.message ?? 'Username atau password salah!'}",
-            Colors.red[200]!,
-            Icons.lock_outline,
+          print('\n❌ JSON PARSE ERROR:');
+          print('Error: ${parseError.toString()}');
+          print('Raw Response: ${response.body}');
+          
+          Get.snackbar(
+            "ERROR",
+            "Error parsing response: ${parseError.toString()}",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red[100],
+            colorText: Colors.black,
           );
-          isLoading.value = false;
-          break;
-
-        case 404:
-          showSnackbar(
-            "ERROR [404]",
-            "Not Found — ${loginModel?.message ?? 'Endpoint tidak ditemukan di server'}",
-            Colors.red[200]!,
-            Icons.search_off,
-          );
-          isLoading.value = false;
-          break;
-
-        case 500:
-          showSnackbar(
-            "ERROR [500]",
-            "Server Error — ${loginModel?.message ?? 'Terjadi kesalahan pada server'}",
-            Colors.red[300]!,
-            Icons.warning_amber,
-          );
-          isLoading.value = false;
-          break;
-
-        default:
-          showSnackbar(
-            "ERROR [${response.statusCode}]",
-            "Terjadi kesalahan — ${loginModel?.message ?? 'Tidak diketahui'}",
-            Colors.red[100]!,
-            Icons.error,
-          );
-          isLoading.value = false;
+          
+          print('========================================');
+          print('❌ LOGIN API FAILED - PARSE ERROR');
+          print('========================================\n');
+        }
+      } else {
+        print('❌ Status Code: ${response.statusCode} - ${response.reasonPhrase}');
+        isLoading.value = false;
+        
+        Get.snackbar(
+          "ERROR",
+          "Server error: ${response.statusCode}",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red[100],
+          colorText: Colors.black,
+        );
+        
+        print('========================================');
+        print('❌ LOGIN API FAILED - SERVER ERROR');
+        print('========================================\n');
       }
-
-      print('========================================');
-      print('LOGIN API FINISHED');
-      print('========================================\n');
     } catch (e) {
       isLoading.value = false;
-      print('Exception: $e');
+      
+      print('\n❌❌❌ EXCEPTION OCCURRED ❌❌❌');
+      print('Error Type: ${e.runtimeType}');
+      print('Error Message: ${e.toString()}');
+      print('Stack Trace:');
+      print(StackTrace.current);
+      
       Get.snackbar(
-        "ERROR [EXCEPTION]",
-        "Terjadi kesalahan: $e",
+        "ERROR",
+        "Terjadi kesalahan: ${e.toString()}",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red[100],
         colorText: Colors.black,
-        icon: const Icon(Icons.error_outline, color: Colors.black),
       );
+      
+      print('========================================');
+      print('❌ LOGIN API FAILED - EXCEPTION');
+      print('========================================\n');
     }
   }
 }
