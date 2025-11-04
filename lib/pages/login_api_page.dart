@@ -7,7 +7,6 @@ class LoginApiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get controller using Get.find() yang sudah di-inject via binding
     final LoginApiController controller = Get.find<LoginApiController>();
 
     return Scaffold(
@@ -135,6 +134,91 @@ class LoginApiPage extends StatelessWidget {
                         onPressed: controller.isLoading.value
                             ? null
                             : controller.loginApi,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Divider
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 2,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          "ATAU",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.grey[600],
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 2,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Google Sign In Button
+                  Obx(
+                    () => Container(
+                      width: double.infinity,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: controller.isGoogleLoading.value
+                            ? Colors.grey[400]
+                            : Colors.white,
+                        border: Border.all(color: Colors.black, width: 2),
+                      ),
+                      child: TextButton.icon(
+                        icon: controller.isGoogleLoading.value
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.black,
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : Image.asset(
+                                'assets/images/google_logo.png',
+                                width: 24,
+                                height: 24,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.g_mobiledata,
+                                    color: Colors.black,
+                                    size: 28,
+                                  );
+                                },
+                              ),
+                        label: Text(
+                          controller.isGoogleLoading.value
+                              ? "LOADING..."
+                              : "MASUK DENGAN GOOGLE",
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1.5,
+                            fontSize: 13,
+                          ),
+                        ),
+                        onPressed: controller.isGoogleLoading.value
+                            ? null
+                            : controller.loginWithGoogle,
                       ),
                     ),
                   ),

@@ -4,13 +4,15 @@ import '../controllers/bottom_nav_controller.dart';
 import '../controllers/calculator_controller.dart';
 import '../controllers/football_controller.dart';
 import '../controllers/contact_controller.dart';
+import '../controllers/login_api_controller.dart';
 import 'calculator_page.dart';
 import 'football_page.dart';
 import 'profile_page.dart';
 import 'contact_page.dart';
 
 class BottomNavPage extends StatelessWidget {
-  BottomNavPage({super.key}){
+  BottomNavPage({super.key}) {
+    // Register controllers if not already registered
     if (!Get.isRegistered<CalculatorController>()) {
       Get.put(CalculatorController());
     }
@@ -20,7 +22,9 @@ class BottomNavPage extends StatelessWidget {
     if (!Get.isRegistered<ContactController>()) {
       Get.put(ContactController());
     }
-    // Tambahkan controller lain jika diperlukan
+    if (!Get.isRegistered<LoginApiController>()) {
+      Get.put(LoginApiController());
+    }
   }
 
   final controller = Get.find<BottomNavController>();

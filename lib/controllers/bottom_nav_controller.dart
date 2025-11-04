@@ -1,11 +1,16 @@
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:laihan01/helper/shared_pref_helper.dart';
+import 'package:laihan01/routes/routes.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../routes/routes.dart';
 
 class BottomNavController extends GetxController {
   var currentIndex = 0.obs;
   var isLoggingOut = false.obs;
+  
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void changeTabIndex(int index) {
     if (index >= 0 && index <= 3) {
@@ -28,7 +33,7 @@ class BottomNavController extends GetxController {
     }
   }
 
-  void logout() async {
+  void logout() {
     // Show confirmation dialog
     Get.dialog(
       AlertDialog(
@@ -106,36 +111,61 @@ class BottomNavController extends GetxController {
   }
 
   Future<void> _performLogout() async {
-    isLoggingOut.value = true;
+    print('\n========================================');
+    print('🚪 LOGOUT STARTED');
+    print('========================================');
     
+    isLoggingOut.value = true;
+
     try {
-      // Clear shared preferences
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('username');
-      
-      // Show success message
-      Get.snackbar(
-        "LOGOUT BERHASIL",
-        "Anda telah keluar dari aplikasi",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: const Color.fromARGB(63, 112, 111, 111),
-        colorText: Colors.black,
-        duration: const Duration(seconds: 2),
-      );
-      
-      // Navigate to login page and clear all previous routes
-      await Future.delayed(const Duration(milliseconds: 500));
+      // Get login type
+      final loginType = await SharedPrefHelper.getLoginType();
+      print('📝 Login Type: $loginType');
+
+      // Logout from Google if logged in with Google
+      if (loginType == 'google') {
+        print('⏳ Signing out from Google...');
+        await _googleSignIn.signOut();
+        print('✅ Google sign out successful');
+        
+        print('⏳ Signing out from Firebase...');
+        await _auth.signOut();
+        print('✅ Firebase sign out successful');
+      }
+
+      // Clear all login data from SharedPreferences
+      print('⏳ Clearing SharedPreferences...');
+      await SharedPrefHelper.clearLoginData();
+      print('✅ SharedPreferences cleared');
+
+      // Debug: Print all data
+      await SharedPrefHelper.printAll();
+
+      isLoggingOut.value = false;
+
+      print('🔄 Navigating to: ${AppRoutes.loginApi}');
+      print('========================================');
+      print('✅ LOGOUT COMPLETED SUCCESSFULLY');
+      print('========================================\n');
+
+      // Navigate to login page
       Get.offAllNamed(AppRoutes.loginApi);
     } catch (e) {
+      isLoggingOut.value = false;
+      
+      print('\n❌❌❌ LOGOUT EXCEPTION ❌❌❌');
+      print('Error Type: ${e.runtimeType}');
+      print('Error Message: ${e.toString()}');
+      
       Get.snackbar(
         "ERROR",
-        "Terjadi kesalahan saat logout",
+        "Logout gagal: ${e.toString()}",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withValues(alpha: 0.2),
-        colorText: Colors.black,
       );
-    } finally {
-      isLoggingOut.value = false;
+      
+      print('========================================');
+      print('❌ LOGOUT FAILED');
+      print('========================================\n');
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:laihan01/controllers/calculator_controller.dart';
 import 'package:laihan01/controllers/football_controller.dart';
 import 'package:laihan01/controllers/contact_controller.dart';
 
+
 class BottomNavPageBinding extends Bindings {
   @override
   void dependencies() {
