@@ -14,7 +14,7 @@ class PremierTableContoller extends GetxController {
     fetchPremierTable();
   }
 
-  fetchPremierTable() async {
+  Future <void> fetchPremierTable() async {
     const url =
         'https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2025-2026';
 

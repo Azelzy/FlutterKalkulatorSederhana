@@ -18,14 +18,24 @@ class PremierTablePage extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           // Placeholder for content that reacts to controller's state
-          return ListView.builder(
-            itemCount: controller.standings.length,
-            itemBuilder: (context, index) {
-              final team = controller.standings[index];
-              return Card(
-                child: ListTile(title: Text(team.strTeam.toString())),
-              );
+          return RefreshIndicator(
+            onRefresh: () { 
+              return controller.fetchPremierTable();
             },
+            child: ListView.builder(
+              itemCount: controller.standings.length,
+              itemBuilder: (context, index) {
+                final team = controller.standings[index];
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(backgroundImage: NetworkImage(team.strBadge),),
+                    trailing: Text(team.intPoints),
+                    subtitle: Text("Played: ${team.intPlayed}\nW: ${team.intWin} D: ${team.intDraw} L: ${team.intLoss}"),
+                    title: Text(team.strTeam.toString())
+                    ),
+                );
+              },
+            ),
           );
         }),
       ),
