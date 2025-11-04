@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
       ),
-      initialRoute: AppRoutes.premierTable,
+      initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [
