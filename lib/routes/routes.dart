@@ -9,5 +9,6 @@ class AppRoutes{
   static const String contact = '/contact';
   static const String example = '/example';
   static const String loginApi = '/loginApi';
+  static const String premierTable = '/premierTable';
   // Add other routes here as needed   
 }

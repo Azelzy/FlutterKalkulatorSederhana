@@ -20,6 +20,8 @@ import 'package:laihan01/bindings/example_binding.dart';
 import 'package:laihan01/pages/example_page.dart';
 import 'package:laihan01/pages/login_api_page.dart';
 import 'package:laihan01/bindings/login_api_binding.dart';
+import 'package:laihan01/bindings/premier_table_binding.dart';
+import 'package:laihan01/pages/premier_table_page.dart';
 
 class AppPages {
   static final pages = [
@@ -68,6 +70,11 @@ class AppPages {
       name: AppRoutes.loginApi,
       page: () => const LoginApiPage(),
       bindings: [LoginApiBinding(), NotificationBinding()],
+    ),
+    GetPage(
+      name: AppRoutes.premierTable,
+      page: () => PremierTablePage(),
+      bindings: [PremierTableBinding(), NotificationBinding()],
     ),
   ];
 }
