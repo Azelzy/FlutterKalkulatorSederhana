@@ -4,6 +4,6 @@ import 'package:laihan01/controllers/premier_table_contoller.dart';
 class PremierTableBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(PremierTableContoller());
+   Get.lazyPut<PremierTableContoller>(() => PremierTableContoller());
   }
 }

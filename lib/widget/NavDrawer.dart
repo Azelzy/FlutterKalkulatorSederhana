@@ -19,7 +19,7 @@ class NavDrawer extends StatelessWidget {
           // Header
           Container(
             width: double.infinity,
-            height: 200,
+            height: 180,
             color: Colors.black,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.bottomLeft,
@@ -50,94 +50,102 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           
-          // Navigation Items
+          // Navigation Items - Scrollable
           Expanded(
-            child: Column(
-              children: [
-                _buildNavItem(
-                  icon: Icons.calculate,
-                  title: "CALCULATOR",
-                  onTap: () {
-                    controller.changeTabIndex(0);
-                    Get.back();
-                  },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildNavItem(
+                    icon: Icons.calculate,
+                    title: "CALCULATOR",
+                    onTap: () {
+                      controller.changeTabIndex(0);
+                      Get.back();
+                    },
+                  ),
+                  const Divider(height: 1, color: Colors.black),
+                  _buildNavItem(
+                    icon: Icons.sports_soccer,
+                    title: "FOOTBALL",
+                    onTap: () {
+                      controller.changeTabIndex(1);
+                      Get.back();
+                    },
+                  ),
+                  const Divider(height: 1, color: Colors.black),
+                  _buildNavItem(
+                    icon: Icons.table_chart,
+                    title: "PREMIER LEAGUE TABLE",
+                    onTap: () {
+                      Get.back();
+                      Get.toNamed('/premierTable');
+                    },
+                  ),
+                  const Divider(height: 1, color: Colors.black),
+                  _buildNavItem(
+                    icon: Icons.contacts,
+                    title: "CONTACT",
+                    onTap: () {
+                      controller.changeTabIndex(2);
+                      Get.back();
+                    },
+                  ),
+                  const Divider(height: 1, color: Colors.black),
+                  _buildNavItem(
+                    icon: Icons.person,
+                    title: "PROFILE",
+                    onTap: () {
+                      controller.changeTabIndex(3);
+                      Get.back();
+                    },
+                  ),
+                  const Divider(height: 2, color: Colors.black),
+                ],
+              ),
+            ),
+          ),
+          
+          // Logout Button - Fixed at bottom
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: Obx(
+              () => Container(
+                width: double.infinity,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: controller.isLoggingOut.value 
+                      ? Colors.grey[400] 
+                      : Colors.red,
+                  border: Border.all(color: Colors.black, width: 2),
                 ),
-                const Divider(height: 1, color: Colors.black),
-                _buildNavItem(
-                  icon: Icons.sports_soccer,
-                  title: "FOOTBALL",
-                  onTap: () {
-                    controller.changeTabIndex(1);
-                    Get.back();
-                  },
-                ),
-                const Divider(height: 1, color: Colors.black),
-                _buildNavItem(
-                  icon: Icons.contacts,
-                  title: "CONTACT",
-                  onTap: () {
-                    controller.changeTabIndex(2);
-                    Get.back();
-                  },
-                ),
-                const Divider(height: 1, color: Colors.black),
-                _buildNavItem(
-                  icon: Icons.person,
-                  title: "PROFILE",
-                  onTap: () {
-                    controller.changeTabIndex(3);
-                    Get.back();
-                  },
-                ),
-                const Divider(height: 2, color: Colors.black),
-                
-                // Spacer to push logout to bottom
-                const Spacer(),
-                
-                // Logout Button
-                Container(
-                  margin: const EdgeInsets.all(16),
-                  child: Obx(
-                    () => Container(
-                      width: double.infinity,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        color: controller.isLoggingOut.value 
-                            ? Colors.grey[400] 
-                            : Colors.red,
-                        border: Border.all(color: Colors.black, width: 2),
-                      ),
-                      child: TextButton.icon(
-                        icon: controller.isLoggingOut.value
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : const Icon(Icons.logout, color: Colors.white, size: 20),
-                        label: Text(
-                          controller.isLoggingOut.value ? "LOGGING OUT..." : "LOGOUT",
-                          style: const TextStyle(
+                child: TextButton.icon(
+                  icon: controller.isLoggingOut.value
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
                             color: Colors.white,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 1.5,
-                            fontSize: 12,
+                            strokeWidth: 2,
                           ),
-                        ),
-                        onPressed: controller.isLoggingOut.value 
-                            ? null 
-                            : () {
-                                Get.back(); // Close drawer first
-                                controller.logout();
-                              },
-                      ),
+                        )
+                      : const Icon(Icons.logout, color: Colors.white, size: 20),
+                  label: Text(
+                    controller.isLoggingOut.value ? "LOGGING OUT..." : "LOGOUT",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.5,
+                      fontSize: 12,
                     ),
                   ),
+                  onPressed: controller.isLoggingOut.value 
+                      ? null 
+                      : () {
+                          Get.back();
+                          controller.logout();
+                        },
                 ),
-              ],
+              ),
             ),
           ),
         ],
@@ -150,25 +158,34 @@ class NavDrawer extends StatelessWidget {
     required String title,
     required VoidCallback onTap,
   }) {
-    return ListTile(
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          border: Border.all(color: Colors.black),
-        ),
-        child: Icon(icon, color: Colors.black, size: 20),
-      ),
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontWeight: FontWeight.w800, 
-          letterSpacing: 1,
-          fontSize: 14,
-        ),
-      ),
+    return InkWell(
       onTap: onTap,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                border: Border.all(color: Colors.black, width: 2),
+              ),
+              child: Icon(icon, color: Colors.black, size: 20),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w800, 
+                  letterSpacing: 1,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
