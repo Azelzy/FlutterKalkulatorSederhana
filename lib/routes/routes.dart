@@ -10,5 +10,6 @@ class AppRoutes{
   static const String example = '/example';
   static const String loginApi = '/loginApi';
   static const String premierTable = '/premierTable';
+  static const String mangaTable = '/mangaTable';
   // Add other routes here as needed   
 }

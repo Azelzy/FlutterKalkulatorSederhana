@@ -10,7 +10,7 @@ class PremierTablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // === TEMA PUTIH & HITAM ===
+
       backgroundColor: Colors.white, // Background utama PUTIH
       appBar: AppBar(
         backgroundColor: Colors.black, // AppBar tetap HITAM
@@ -31,7 +31,7 @@ class PremierTablePage extends StatelessWidget {
         margin: const EdgeInsets.all(4), // <<< DIKURANGI: Margin Container luar
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 2), // Border HITAM
-          color: Colors.white, // Background Container PUTIH
+          color: Colors.white,
         ),
         child: Obx(() {
           if (controller.isloading.value) {

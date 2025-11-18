@@ -1,6 +1,7 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 import 'package:laihan01/bindings/bottom_nav_binding.dart';
+import 'package:laihan01/bindings/manga_table_binding.dart';
 import 'package:laihan01/bindings/notification_binding.dart';
 import 'package:laihan01/bindings/calculator_binding.dart';
 import 'package:laihan01/bindings/football_binding.dart';
@@ -11,6 +12,7 @@ import 'package:laihan01/pages/football_edit_page.dart';
 import 'package:laihan01/pages/football_page.dart';
 import 'package:laihan01/pages/login_page.dart';
 import 'package:laihan01/pages/contact_page.dart';
+import 'package:laihan01/pages/manga_table_page.dart';
 import 'package:laihan01/routes/routes.dart';
 import 'package:laihan01/pages/bottom_nav_page.dart';
 import 'package:laihan01/pages/splashscreen_page.dart';
@@ -27,7 +29,7 @@ class AppPages {
   static final pages = [
     GetPage(
       name: AppRoutes.calculator,
-      page: () => const CalculatorPage(),
+      page: () => CalculatorPage(),
       bindings: [CalculatorBinding(), NotificationBinding()],
     ),
     GetPage(
@@ -37,7 +39,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.footballedit,
-      page: () => const FootballEditPage(),
+      page: () => FootballEditPage(),
       bindings: [FootballEditBinding(), NotificationBinding()],
     ),
     GetPage(
@@ -52,12 +54,12 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.login,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
       bindings: [LoginBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.contact,
-      page: () => const ContactPage(),
+      page: () => ContactPage(),
       bindings: [ContactBinding(), NotificationBinding()],
     ),
     // Add other pages here as needed
@@ -68,13 +70,18 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.loginApi,
-      page: () => const LoginApiPage(),
+      page: () => LoginApiPage(),
       bindings: [LoginApiBinding(), NotificationBinding()],
     ),
     GetPage(
       name: AppRoutes.premierTable,
       page: () => PremierTablePage(),
       bindings: [PremierTableBinding(), NotificationBinding()],
+    ),
+    GetPage(
+      name: AppRoutes.mangaTable,
+      page: () => MangaPage(),
+      bindings: [MangaBinding(), NotificationBinding()],
     ),
   ];
 }
